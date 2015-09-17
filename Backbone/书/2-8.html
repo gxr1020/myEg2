@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	body{
+		font-size:13px;
+	}
+	ul{list-style-type:none;padding:0;margin:0;width:700px;margin:0 auto;}
+	li:first-child span{
+		float:left;
+		border-bottom: 1px solid #ccc;
+		background-color: #eee;
+		font-weight: bold;
+	}
+	ul li span{
+		width:100px;
+		text-align:left;
+		float:left;
+		padding:0 5px;
+		border-bottom:dashed 1px #ccc;
+		line-height: 28px;
+		text-align: center;
+	}
+	</style>
+</head>
+<body>
+
+	<ul id="element">
+		<li>
+			<span>姓名</span>
+			<span>语文</span>
+			<span>数学</span>
+			<span>英语</span>
+			<span>总分</span>
+			<span>三科平均分</span>
+		</li>
+	</ul>
+	<script type="text/template" id="tpl">
+	<%
+	var chineseSum=0,chineseSvg=0,englishSum=0,englishSvg=0,mathSum=0,mathSvg=0;
+		for(var i=0;i<data.length;i++){
+		var threeSum,threeAvg;
+		threeSum=data[i].Chinese+data[i].math+data[i].English;
+		threeAvg=(threeSum/3).toFixed(2);
+		console.log(data[i])
+		chineseSum+=data[i].Chinese;
+		englishSum+=data[i].English;
+		mathSum+=data[i].math;
+
+	%>
+		<li>
+			<span><%=data[i].name%></span>
+			<span><%=data[i].Chinese%></span>
+			<span><%=data[i].math%></span>
+			<span><%=data[i].English%></span>
+			<span><%=threeSum%></span>
+			<span><%=threeAvg%></span>
+		</li>
+
+	<%}	
+		chineseSvg=(chineseSum/data.length).toFixed(2);
+		englishSvg=(englishSum/data.length).toFixed(2);
+		mathSvg=(mathSum/data.length).toFixed(2);
+
+	%>
+	<li>
+	<span>------------</span>
+		 <span>------------</span>
+		<span>全班语文总分:</span>
+		<span><%= chineseSum%></span>
+		 <span>全班语文平均分:</span>
+		 <span><%= chineseSvg%></span>
+		 
+	</li>
+<li>
+<span>------------</span>
+		 <span>------------</span>
+		<span>全班英语总分:</span>
+		<span><%= englishSum%></span>
+		 <span>全班英语平均分:</span>
+		 <span><%= englishSvg%></span>
+	</li>
+	<li>
+	<span>------------</span>
+		 <span>------------</span>
+		<span>全班数学总分:</span>
+		<span><%= mathSum%></span>
+		 <span>全班数学平均分:</span>
+		 <span><%= mathSvg%></span>
+	</li>
+	</script>
+
+	<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../node_modules/underscore/underscore-min.js"></script>
+	<script>
+	var $ele=$("#element");
+	var tpl=$("#tpl").html();
+		var data=[
+			{
+				name:'小明',
+				Chinese:90,
+				math:99,
+				English:60
+			},{
+				name:'小红',
+				Chinese:80,
+				math:69,
+				English:80
+			},{
+				name:'小明',
+				Chinese:60,
+				math:69,
+				English:50
+			}
+		];
+	var html=_.template(tpl,data);
+	$ele.append(html);
+	</script>
+</body>
+</html>

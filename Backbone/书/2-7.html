@@ -3,9 +3,98 @@
 <head>
 	<meta charset="UTF-8">
 	<title>自定义模板</title>
+	<style>
+	body{
+		font-size:13px;
+	}
+	ul{list-style-type:none;padding:0;margin:0;width:360px;}
+	li:first-child span{
+		float:left;
+		border-bottom: 1px solid #ccc;
+		background-color: #eee;
+		font-weight: bold;
+	}
+	ul li span{
+		width:80px;
+		text-align:left;
+		float:left;
+		padding:0 5px;
+		border-bottom:dashed 1px #ccc;
+		line-height: 28px;
+	}
+	</style>
 </head>
 <body>
+	<script type="text/template" id="tpl">
+		<% var intSumScore=0,intAveScore=0;
+			for(var i=0;i<data.list.length;i++){
+		%>
+			<% var item=data.list[i]%>
+			<li>
+				<span><%=item.StuId%></span>
+				<span><%=item.Name%></span>
+				<span><%=item.Sex%></span>
+				<span><%=item.Score%></span>
+			</li>
+		<%
+			intSumScore+=parseInt(item.Score);			
+		}
+		intAveScore=intSumScore/data.list.length;
+		%>
+		<li>
+			<span>平均分:</span>
+			<span><%=intAveScore%></span>
+			<span>总分:</span>
+			<span><%=intSumScore%></span>
+		</li>
+	</script>
+	<ul id="element">
+		<li>
+			<span>学号</span>
+			<span>姓名</span>
+			<span>性别</span>
+			<span>总分</span>
+		</li>
+
+	</ul>
+	<script src="../node_modules/jquery/dist/jquery.min.js"></script>
 	<script src="../node_modules/underscore/underscore-min.js"></script>
-	<script></script>
+	<script>
+	var $ele=$('#element'),
+		tpl=$('#tpl').html();
+	var data={
+		list:[
+			{
+				StuId:'s0101',
+				Name:'刘小明',
+				Sex:'男',
+				Score:'345'
+			},{
+				StuId:'s0102',
+				Name:'刘小明',
+				Sex:'女',
+				Score:'345'
+			},{
+				StuId:'s0103',
+				Name:'张二保',
+				Sex:'男',
+				Score:'355'
+			},{
+				StuId:'s0104',
+				Name:'陈明基',
+				Sex:'男',
+				Score:'564'
+			},{
+				StuId:'s0105',
+				Name:'舒明珠',
+				Sex:'女',
+				Score:'543'
+			}
+		]
+	}
+var html=_.template(tpl,data);
+console.log(html);
+$ele.append(html);
+	</script>
 </body>
 </html>
