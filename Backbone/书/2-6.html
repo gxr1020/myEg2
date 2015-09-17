@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<script src="../node_modules/underscore/underscore-min.js"></script>	
+<script>
+	// random 获取指定数字范围内的随机数
+	// _.random(min,max)
+	var intdef=_.random(10); // 10 最大范围是10的随机数
+	var intnum=_.random(10,20); //10-20之间的随机数
+	console.log(intdef);
+	console.log(intnum);
+
+	// escape unescape 编码和解码函数
+	// escape 对指定字符串内容进行编码 16进制转义序列
+	// unescape 对指定字符串解码
+	var stresc=_.escape("email/163'tao'<guo>&rong-_.!~*");
+	var strunesc=_.unescape(stresc);
+	console.log('编码后:'+stresc);
+	console.log('解码后:'+strunesc);
+
+	//template()函数
+	// 三种模板标签
+	// <% %> 标签中包含的通常是javascript，在页面渲染时被执行
+	// <%= %> 标签中包含变量名，函数名，对象属性，执行时直接展现调用后的数据
+	// <%- %> 标签在输出数据是，将html标记转常用字符串形成，避免代码攻击
+	// template(templateString,[data],[settings])
+	// 
+	var tpl=_.template("<%console.log(str)%>");
+	tpl({str:'姓名:xxx'});
+
+	var str2={name:"x2x2x2"};
+	var tpl2=_.template("<%=name%>");
+	console.log(tpl2(str2));
+
+	var tpl3=_.template("<%-str3%>");
+	console.log(tpl3({str3:"姓/'名'&:<陶>国荣"}));
+	
+</script>
+</body>
+</html>

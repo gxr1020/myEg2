@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../node_modules/underscore/underscore-min.js"></script>
+
+</head>
+<body>
+函数:
+	<script>
+	// _.delay(function,wait,[*arguments]) 类似于setTimeout
+	var fun=function(v){console.log('你输入的是:'+v);}
+	_.delay(fun,1000,'underscore');
+	
+
+	// _.once //once 函数只执行一次  可用来初始化变量
+	// 再次执行将无效，可以吧初始化的内容用once执行
+	var num,str;
+	var fun=function(){
+		num=0;str="1";
+		console.log("初始化成功！");
+	}
+	var init=_.once(fun);
+	init();
+	console.log("初始化后的值->num: "+num+";str: "+str);
+
+	//wrap函数作用是包装，函数包装函数
+	// _.wrap(function,wrapper) 
+	// function 是被包装的函数，wrapper是包装的外层
+	var input=function(n,s){
+		return s?n+",先生":n+",女士";
+	}
+	input=_.wrap(input,function(input){
+		return "你好，"+input('xxx',1)+",欢迎来到Backbone世界！";
+	});
+	console.log(input);
+	console.log(input());
+
+
+	//compose函数 返回一个经过多个函数组合后的列表
+	//_.compose(*functions),*functions表示多个函数
+	//如 _.compose(A,B) ,当执行compose函数是， 先调用B函数，然后再将返回值作为函数A的参数即A(B())
+	var A=function(a1){
+		console.log("a1:"+a1);
+		return a1*a1;
+	}
+	var B=function(b1){
+		console.log("b1:"+b1);
+		return b1*b1;
+	}
+	var C=function(c1){
+		console.log("c1:"+c1);
+		return c1*c1;
+	}
+	var D=_.compose(A,B,C);	//返回一个新函数
+	console.log("最终结果为:"+D(2));
+	</script>
+
+</body>
+</html>

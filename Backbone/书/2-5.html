@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+对象:
+	<script src="../node_modules/underscore/underscore-min.js"></script>
+	<script>
+	// keys函数 获取建名
+	// _.keys(object)
+	var obj={
+		name:'xxx',
+		sex:'男',
+		email:'xxfsfsa@163.com'
+	}
+	var arrkey=_.keys(obj);
+	console.log(arrkey);
+
+	//values函数 获取值 
+	var arrvalue=_.values(obj);
+	console.log(arrvalue);
+
+	//pick  挑选指定key的属性，并返回新对象
+	//_.pick(object,*key)
+	var data={
+		A:1,
+		B:2,
+		C:3,
+		D:4
+	}
+	var newdata=_.pick(data,'B','C');
+	console.log(newdata); //{B:2,C:3}
+
+	//omit 排除掉指定key属性，并返回新对象
+	//_.omit(object,*key)
+	var newdata2=_.omit(data,'B','C');
+	console.log(newdata2); //{A:1,D:4}
+
+
+	// defaults //用来设置对象的默认属性
+	// 可能用到表单填资料时，设置某些项默认值
+	var info={}
+	info=_.defaults(info,{
+		name:'',
+		email:'默认邮箱:1111@163.com'
+	})
+	info.name="xxx";
+	console.log(info);
+
+	// has函数 可测试出JSON格式的对象，是否存在某个属性(key)值
+	// _.has(object,key)
+	var info2={
+		name:'XXADV',
+		sex:'男',
+		email:'tao_guo_rong@163.com'
+	}
+	var strShow;
+	if(_.has(info2,'score')){
+		strShow=info2.score;
+	}else{
+		strShow='对象不存在该属性！'
+	}
+	console.log(strShow);
+	</script>
+</body>
+</html>
