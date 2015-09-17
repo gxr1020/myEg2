@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../node_modules/underscore/underscore-min.js"></script>
+</head>
+<body>
+	数组：
+	<script>
+	// first() //从前到后 获取指定位数的元素
+	// last()  //从后到前 获取指定位数的元素
+	var stu=[{
+		name:"张三",score:60
+	},{
+		name:"李四",score:40
+	},{
+		name:"王二",score:80
+	}]
+	var first2=_.first(stu,2); //得到数组前两个元素
+	var last1=_.last(stu,2);  //得到数组后两个元素
+	console.log(first2);
+	console.log(last1);
+
+	//indexOf，lastIndexOf查找数组，返回元素的索引
+	//第三个参数是从第几位开始查找
+	var stu2=['张三','李四','王五'];
+	var find=_.indexOf(stu2,'李四');
+	console.log(find); //1 //李四是stu2[1]
+
+
+	//without 排除某个元素 返回新数组
+	//_.without(array,[*values])
+	
+	var newarr=_.without([40,60,50,40],4,40);// 排除掉元素4和40 返回一个新数组
+	console.log(newarr);
+	
+	// union 多个或一个数组 去掉重复元素 返回新数组
+	
+	</script>
+</body>
+</html>

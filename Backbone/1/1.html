@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<input type="button" id="btn" value="点击删除,模型属性">
+
+	<script src="../node_modules/jquery/dist/jquery.js"></script>
+	<script src="../node_modules/underscore/underscore-min.js"></script>
+	<script src="../node_modules/backbone/backbone-min.js"></script>
+	<script>
+	(function($){
+		var ListView=Backbone.View.extend({
+			el:$('body'),
+			initialize:function(){
+				_.bindAll(this,'render');
+				this.render();
+			},
+			render:function(){
+				$(this.el).append("<ul><li>hello world</li></ul>");
+			}
+		});
+		var listView=new ListView();
+	})(jQuery);
+// 模型extend扩展方法 实例化后可自己用里面的方法属性
+	var User=Backbone.Model.extend({
+		initialize:function(name){
+			this.set({name:name});
+			// console.log("abc");
+		},
+		 abc:function(){
+	  		console.log('x');
+	 	 },
+		name2:"<script>alert('xss')<\/script>"
+	});
+	var user=new User("abc");
+	console.log(user.get('name'));
+	user.set({xxx:'123'});
+	console.log(user.get('xxx'));
+	console.log(user.attributes);
+	console.log(user.abc);
+	// user.set({})
+	alert(user.get("name2"));
+
+
+// 注意这里不是extend扩展方法，实例化后也不能通过实例点出来
+//没有extend是 给模块添加属性 注意！属性与扩展方法不一样 扩展方法里面的属性方法不能直接
+// exscape 和get
+	var hacker = new Backbone.Model({
+	  name: "<script>alert('xss')<\/script>",
+	  abc:function(){
+	  	console.log('x');
+	  }
+	});
+	console.log(hacker.abc);//是不会有结果
+	alert(hacker.escape('name'));
+
+</script>
+<script>
+	$("#btn").on('click',function(){
+		console.log(hacker.attributes);
+		hacker.unset('name');
+		console.log(hacker.attributes);
+	});
+</script>
+</body>
+</html>

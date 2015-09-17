@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script src="../node_modules/underscore/underscore-min.js"></script>
+<script>
+	var compiled=_.template("hello:<%=name %>");
+	console.log(compiled({name:"moe"}));
+
+</script>
+</body>
+</html>

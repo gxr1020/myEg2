@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<script src="../node_modules/zepto/zepto.min.js"></script>
+	<script src="../node_modules/underscore/underscore-min.js"></script>
+	<script>
+		$(document).ready(function(){
+
+			var data=[];
+			var i;
+			for(i=0;i<10;i++){
+				var temp={};
+				temp.name="name_"+i.toString();
+				temp.age="age_"+i.toString();
+				temp.home="home_"+i.toString();
+				temp.test="test_"+i.toString();
+				data.push(temp);
+			}
+			var template="<div>{name}</div><div>{age}</div><div>{home}</div><div>{test}</div><hr/>";
+			var wl2=$("#wl2");
+
+			function update(){
+				var now=new Date();
+				var beginTime=now.getTime();
+
+				var templateObj=[];
+				var reg=/\{[A-Za-z]*\}/; //过滤掉{*}
+
+				var para=reg.exec(template); 
+				//第一次取得
+				//["{age}", index: 11, input: "</div><div>{age}</div><div>{home}</div><div>{test}</div><hr/>"]
+
+				//para[0]--指向了{name}
+				//
+				//
+				var tempHtml=template;
+				while(para && para.length>0){
+					var len=para.index;
+					var temp={};
+					temp.html=tempHtml.substr(0,len);
+					temp.field=para[0].substr(1,para[0].length-2);  
+					templateObj.push(temp); 
+					tempHtml=tempHtml.substr(len+para[0].length);
+					para=reg.exec(tempHtml); //继续查找
+					
+				}
+				var end={};
+				end.html=tempHtml;
+				templateObj.push(end);
+				
+				var html="";
+				$.each(data,function(index,dataItem){
+					var tempHtm="";
+					$.each(templateObj,function(i,item){
+						if(item.field){
+							tempHtm=tempHtm+item.html+dataItem[item.field];
+						}else{
+							tempHtm=tempHtm+item.html;
+						}
+					});
+					html+=tempHtm;
+				});
+				wl2.append(html);
+
+			}
+			update();
+			console.log(data);
+		})
+	</script>
+</head>
+<body>
+	<div id="wl2"></div>
+</body>
+</html>

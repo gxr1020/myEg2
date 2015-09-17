@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	    <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <script src="./node_modules/underscore/underscore-min.js"></script>
+    <script src="./node_modules/backbone/backbone-min.js"></script>
+    <script>
+    var Music=Backbone.Model.extend({
+    	defaults:{ //设置模型的默认属性
+    		name:"Not specified",
+    		artist:"Not specifed"
+    	},
+    	initialize:function(){ //模型初始化时的方法
+    		console.log("Welcome to the music world"); 
+    	},
+        validate:function(){//设置属性色set或save 时的检查方法
+        }
+    });
+    var Album=Backbone.Collection.extend({
+        model:Music
+    });
+    var music1=new Music({id:1,name:"How Bizarre",artist:"OMC"});
+    var music2=new Music({id:2,name:"What Hurts the Most",artist:"Rascal Flatts"});
+    var myAlbum=new Album([music1,music2]);
+    console.log(myAlbum.models);
+    console.log(JSON.stringify(myAlbum));
+    var music3=new Music({id:3,name:"通过add往集合中添加模型",artist:"xxx"});
+    myAlbum.add(music3);
+
+    console.log(JSON.stringify(myAlbum));
+    //remove移除集合中一个模型
+    myAlbum.remove(1);//参数是模型id
+    console.log(JSON.stringify(myAlbum));
+//get 和set
+console.log(JSON.stringify(myAlbum.get(3)));//参数是模型id
+
+
+    </script>
+</body>
+</html>

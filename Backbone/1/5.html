@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script src="./node_modules/jquery/dist/jquery.js"></script>
+	<script src="./node_modules/underscore/underscore-min.js"></script>
+	<script src="./node_modules/backbone/backbone-min.js"></script>
+	<script>
+    var Music=Backbone.Model.extend({
+    	defaults:{ //默认属性
+    		Name:''//
+    	},
+    	idAttribute:'id' //该属性指定了那个属性设置为模型id
+    });
+    var song=Backbone.Collection.extend({ //集合绑定了Music模型
+    	model:Music
+    });
+    var models=[{
+    	Name:'OMC',id:1
+    },{
+    	Name:'Flatts',id:2
+    }];
+    var collection=new song(models); //实例化集合 传入模型
+    collection.bind('add',function(){
+    	console.log('add');
+    });
+    collection.bind('remove',function(){
+    	console.log('remvoe');
+    })
+    models=[{
+    	Name:'OMC2',id:1
+    },{
+    	Name:'Flatts2',id:2
+    },{
+    	Name:'Jackson',id:3
+    },{ Name: ' Jackson ',  
+            id: 4}];
+    collection.add(models);
+
+
+var student=Backbone.Model;
+var students=new Backbone.Collection;
+students.comparator='name';
+students.add(new student({name:'name4',roll:9}));
+students.add(new student({name:'name2',roll:5}));
+students.add(new student({name:'name3',roll:1}));
+console.log(students.pluck('roll')); //pluck 返回集合中指定属性的集合
+console.log(JSON.stringify(students));
+
+    </script>
+</body>
+</html>

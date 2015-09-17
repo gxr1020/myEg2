@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+</head>
+<body>
+
+<input type="button" id='btn1'>
+	<script src="./node_modules/jquery/dist/jquery.js"></script>
+	<script src="./node_modules/underscore/underscore-min.js"></script>
+	<script src="./node_modules/backbone/backbone-min.js"></script>
+	<script>
+	var Meal=Backbone.Model.extend({
+		idAttribute:"abc" //相当于获取模型的_id 设置为id
+	});
+	var cake=new Meal({_id:1,name:"Cake",abc:2});
+	console.log("cake id : "+cake.id);
+	console.log("cake idAttribute: "+cake.idAttribute);
+
+
+	var Meal=Backbone.Model.extend({
+		defaults:{ //在扩展函数里 设置默认属性
+			"appetizer":"caesar salad",
+			"entree":"ravioli",
+			"dessert":"cheesecake"
+		}
+	});
+	alert((new Meal).get('dessert'));
+//=========================================
+	var Person=Backbone.Model.extend({
+		validate:function(attrs){
+			if(!_.isString(attrs.name)){
+				return 'name必须是字符串类型';
+			}
+			if(!_.isNumber(attrs.age)){
+				return 'age必须是数字类型';
+			}
+
+		},
+		urlRoot: 'Default.aspx'
+	});
+	var p1=new Person();
+	p1.on('invalid',function(model,error,agr){
+		console.log(error);
+	});
+	p1.on('change',function(){
+		console.log('set调用会触发change事件');
+	});
+
+	p1.set({name:'Backus',age:87}); //set是 会触发chagne事件 除非有 设置silent
+	p1.set({name:'xx',age:154},{silent:true});
+
+var btn=document.getElementById("btn1");
+btn.addEventListener('click', function () {
+    p1.save({ name: 'save', age: 123 }, {
+        success: function () {
+            console.log('success');
+        },
+        error: function () {
+            console.log('error!!');
+        }
+    });
+   
+});
+     //   p1.url()
+alert(p1.url());
+        //
+var Chapter = Backbone.Model.extend({
+    validate: function (attrs,options) {
+        if (attrs.end < attrs.start) {
+            return "can't end before it starts";
+        }
+    }
+});
+var one = new Chapter({
+    title:"Chapter One:The Beginning"
+})
+one.set({
+    start: 15,
+    end:10
+});
+if (!one.isValid()) {
+    alert(one.get("title") + " " + one.validationError);
+}
+	</script>
+
+</body>
+</html>

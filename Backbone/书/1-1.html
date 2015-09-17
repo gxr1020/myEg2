@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../node_modules/underscore/underscore-min.js"></script>
+
+	<div id="divTip">点击我</div>
+
+	<script>
+	var divView={
+		ele:'#divTip',
+		tip:'hello,underscore!',
+		onClick:function(){
+			console.log('x');
+			console.log(this);
+			$(this.ele).html(this.tip);
+		}
+	}
+	// divView.onClick();  
+	// 如果直接调用 divView.onClick this是指向divView
+	// 用jq click绑定调用 this指向的是Dom对象
+	console.dir(divView.onClick);
+	
+	// _.bindAll(divView,'onClick');
+	$(divView.ele).bind('click',divView.onClick);
+	console.dir(divView.onClick);
+	// $(divView.ele).on('click',divView.onClick);
+
+	</script>
+</body>
+</html>

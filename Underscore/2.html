@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<div id="div1"></div>
+<script>
+	var _="命名变量";
+</script>
+	<script src="node_modules/underscore/underscore-min.js"></script>
+	<script>
+	console.log(_)//underscore对象
+	var us=_.noConflict();//使用noConflict将underscore对象重命名为us
+	console.log(_);
+	console.log(us);
+	// ===========链式操作==============
+	// underscore的链式操作需要先调用chain函数
+	var arr=[10,20,30];
+	_(arr).chain().map(function(item){reutrn item++;}).first().value();
+
+	//用mixin方法可向underscore扩展自定义方法
+	_.mixin({
+		method1:function(){
+			console.log("扩展方法一");
+		}
+	})
+	_.method1();
+		
+	</script>
+</body>
+</html>

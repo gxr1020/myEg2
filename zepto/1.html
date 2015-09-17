@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div class="myDiv"></div>
+	<script src="node_modules/zepto/zepto.min.js"></script>
+	<script>
+	console.log($('.myDiv'));
+	// ------------------------------
+
+	//创建带有属性的元素
+	var $p=$("<p/>",{text:"Hello",id:"greething",css:{color:'darblue'} });
+
+	// ------------------------------
+
+	//ready的时候，执行回调
+	Zepto(function($){
+		alert('xx');
+	});
+	// ------------------------------
+
+	// $.camelCase 转驼峰式
+	console.log($.camelCase('hello-xx')); 
+	console.log($.camelCase('Hello-Word'));
+	// ------------------------------
+	//$.contains(parent,node) 检查父几点是否包含给定的dom节点
+
+	// ------------------------------
+
+	//$.each(collection ,function(index,item){...})遍历数组元素或key-value值对方式遍历对象
+	$.each(['a','b','c'],function(index,item){
+		console.log('item %d is %s',index,item);
+		// console.log(index+" "+item);
+	});
+
+
+	//$.extend(target,soure) //合并对象并返回新对象
+	var target={one:'patridge'},
+	source={two:'turle dove'};
+	console.log($.extend(target,source));
+	console.log(target);
+	console.log(source);
+
+	//----------------------
+// $('.myDiv').add('p').css('background-color','red');
+
+
+var temp=$(["li","span","div"]).add(["p","p"]);
+
+
+console.log(temp);
+
+	</script>
+
+</body>
+</html>

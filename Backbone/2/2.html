@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../node_modules/underscore/underscore-min.js"></script>
+	<script src="../node_modules/backbone/backbone-min.js"></script>
+	<script>
+	var Book=Backbone.Model.extend({
+		defaults:{
+			name:'unknown',
+			author:'unkown',
+			price:0
+		}
+	})
+	var javabook=new Book();
+	</script>
+</body>
+</html>

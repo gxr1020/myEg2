@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script src="./node_modules/jquery/dist/jquery.js"></script>
+	<script src="./node_modules/underscore/underscore-min.js"></script>
+	<script src="./node_modules/backbone/backbone-min.js"></script>
+	<script>
+	var CustomRouter=Backbone.Router.extend({
+		routes:{
+			'':'index',
+			'list':'getList',
+			'detail/:id':'query',
+			'*error':'showError'
+		},
+		index:function(){
+			alert('index');
+		},
+		getList:function(){
+			alert('getList');
+
+		},
+		showError:function(error){
+			alert('error hash'+error);
+		},
+		query:function(id){
+			alert('query id:'+id);
+
+		}
+	});
+	var custom=new CustomRouter();
+	Backbone.history.start();
+	</script>
+</body>
+</html>

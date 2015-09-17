@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<!--<script src="node_modules/underscore/underscore-min.js"></script>-->
+</head>
+<body>
+	<script>
+/**
+ * @param idle {[type]} 空闲时间，单位毫秒
+ * @param action {[type]} 请求关联函数，实际应用需要调用的函数
+ * @return {[type]}	返回客户端调用的函数
+ */
+	var debounce=function(idle,action){
+		var last;
+		return function(){
+			var ctx=this,args=arguments;
+			clearTimeout(last);
+			last=setTimeout(function(){
+				action.apply(ctx,args);
+			},idle);
+		}
+	}
+	// 调用后间隔3.5秒后执行
+	debounce(3500,function(){
+		console.log("x");
+	})();
+
+var throttle=function(delay,action){
+	var last=0;
+	return function(){
+		var curr=+new Date();
+		if(curr-last>delay){
+			action.apply(this,arguments);
+
+		}
+		last=curr;
+	};
+};
+
+
+	</script>
+</body>
+</html>

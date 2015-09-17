@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script src="node_modules/underscore/underscore-min.js"></script>
+
+	<script>
+// ===========链式操作==============
+	// underscore的链式操作需要先调用chain函数
+	var arr=[10,20,30];
+	_(arr).chain().map(function(item){return item++;}).first().value();
+
+	//用mixin方法可向underscore扩展自定义方法
+	_.mixin({
+		method1:function(){
+			console.log("扩展方法一");
+		}
+	})
+	_.method1();
+	_.method1();
+
+//==============遍历集合==================	
+//============ 数组用map 对象用each=======
+var arr=[1,2,3,4];
+_(arr).map(function(item,i){
+	arr[i]=item+1;
+});
+console.log(arr);
+
+var obj={first:1,second:2};
+_(obj).each(function(value,key){
+	return obj[key]=value+1;
+});
+console.log(obj);
+
+
+	</script>
+</body>
+</html>

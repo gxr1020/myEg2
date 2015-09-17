@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script src="node_modules/underscore/underscore-min.js"></script>
+	<script>
+	var jsData={name:'data'}; //普通的js原生对象
+	var underscoreData=_(jsData); //普通元素对象转underscore对象
+console.log(underscoreData);
+	console.log(underscoreData.value());//underscore对象转原生对象
+
+	</script>
+</body>
+</html>

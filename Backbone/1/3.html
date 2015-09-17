@@ -1,0 +1,17 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+</head>
+<body>
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <script src="./node_modules/underscore/underscore-min.js"></script>
+    <script src="./node_modules/backbone/backbone-min.js"></script>
+    <script>
+        var Book = Backbone.Model.extend({ urlRoot: '/books' });
+        var solaris = new Book({ id: "1083-lem-solaris" });
+        alert(solaris.url());
+    </script>
+</body>
+</html>

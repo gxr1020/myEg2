@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../node_modules/underscore/underscore-min.js"></script>
+</head>
+<body>
+	underscore---集合
+	<script>
+	// _.each(list,iterator,[context]) 
+	// 只按照过滤听见遍历每个列表元素，且无返回内容
+	_.each([1,2,3,4,5,6],
+		function(n){ 
+			if(!(n%2)){
+				console.log(n);
+			}
+		})
+	//_.map(list,iterator,[context])
+	//只按照过滤听见遍历每个列表元素 有返回内容
+	
+	var arr=_.map([1,2,3,4,5,6],function(n){
+									if(!(n%2)){return n;}
+								});
+	for(var i=0;i<arr.length;i++){
+		if(arr[i]!=undefined){
+			console.log(i+"->"+arr[i]);
+		}
+	}
+
+	var obj={a:"1",b:"2",c:"3"}
+	_.each(obj,function(v,k,obj){
+		return console.log(k+"->"+v);
+	});
+
+	//find() filter() 查找过滤
+	//find查找符合条件的首个元素值，如果没找则返回undefined
+	//filter 如果找到则返回一个与条件符合的数组，如果没找到则返回空数组
+	
+	var blnfind=_.find([2,4,6,8,10,11,15,12], //[2,4,6,8,10,12],
+		function(n){
+			return (!(n%2==0));
+	})
+	console.log(blnfind!=undefined?blnfind:"未找到");
+
+	var arrfind=_.filter([1,4,3,6,5,8],
+		function(n){
+			return (!(n%2==0));
+	});
+
+	console.log(arrfind.length!=0?arrfind:"未找到");
+
+	// max min
+	console.log(_.max([1,6,2,7,4]));//7
+	console.log(_.min([1,6,2,7,4]));//1
+	//max  min 
+	var stu=[{
+		name:'张三',score:60
+	},{
+		name:'李四',score:40
+	},{
+		name:'王二',score:80
+	}];
+	var min=_.min(stu,function(n){return n.score;});//按score取出最小的元素
+	console.log("最小分数值姓名为:"+min.name);
+
+	//sortBy() 排序
+	var sort=_.sortBy(stu,function(n){return n.score;});
+	_.each(sort,function(n){console.log(n)});
+
+
+	//groupBy() 分组
+	var group=_.groupBy(stu,function(n){
+		return n.score>60;
+	});
+	console.log(group);
+	</script>
+</body>
+</html>

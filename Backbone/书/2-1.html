@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../node_modules/underscore/underscore-min.js"></script>
+</head>
+<body>
+	<script>
+	// 原生对象与Underscore对象
+	var data={
+		name:'嘻嘻嘻',
+		email:"sss@162.com"
+	}
+
+	var object=_(data); //此时object 为 data原生对象的 underscore版
+
+	console.log(object.value().name+"---"+object.value().email);
+
+	var arr=[15,26,38];
+	var object2=_(arr);
+	console.log("max:"+object2.max()+" min:"+object2.min());
+
+	</script>
+</body>
+</html>

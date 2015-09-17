@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../node_modules/underscore/underscore-min.js"></script>
+	<script src="../node_modules/backbone/backbone-min.js"></script>
+
+	<script>
+	var m=new Backbone.Model();
+	m.on('custom',function(index){ //绑定事件
+		alert(index);
+	});
+	for(var i=0;i<3;i++){
+		m.trigger('custom',i); //触发事件
+	}
+	m.off('custom');//移除事件
+	m.trigger('custom',i)//再次触发将无效
+	</script>
+</body>
+</html>

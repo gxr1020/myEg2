@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="node_modules/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+<!-- 用于显示渲染后的标签 -->  
+<ul id="element"></ul>  
+  
+<!-- 定义模板，将模板内容放到一个script标签中 -->  
+<script type="text/template" id="tpl">  
+    <% for(var i = 0; i < data.list.length; i++) { %>  
+        <% var item = data.list[i] %>  
+        <li>  
+            <span><%=item.firstName%> <%=item.lastName%></span>  
+            <span><%-item.city%></span>  
+        </li>  
+    <% } %>  
+</script>  
+<script type="text/javascript" src="node_modules/underscore/underscore-min.js"></script>  
+<script type="text/javascript">  
+    // 获取渲染元素和模板内容  
+    var element = $('#element'),  
+        tpl = $('#tpl').html();  
+      console.log(element+" "+tpl)
+    // 创建数据, 这些数据可能是你从服务器获取的  
+    var data = {  
+        list: [  
+            {firstName: '<a href="#">Zhang</a>', lastName: 'San', city: 'Shanghai'},  
+            {firstName: 'Li', lastName: 'Si', city: '<a href="#">Beijing</a>'},  
+            {firstName: 'Wang', lastName: 'Wu', city: 'Guangzhou'},  
+            {firstName: 'Zhao', lastName: 'Liu', city: 'Shenzhen'}  
+        ]  
+    }  
+      console.log(data);
+    // 解析模板, 返回解析后的内容  
+    var html2 = _.template(tpl, data);  
+    // 将解析后的内容填充到渲染元素  
+    element.html(html2);  
+
+</script>  
+	
+</body>
+
+
+</html>
