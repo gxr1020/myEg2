@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script src="../node_modules/underscore/underscore-min.js"></script>
+	<script>
+	var data=[1,2,3,4,5,6,7];
+	//chain 函数相当于jq的链式操作
+	//_.chain(obj)//返回一个包装后的对象，然后再调用该对象的方法是，将继续返回该对象的另外属性值
+	var find=_.chain(data)
+			.filter(function(num){ return num%2==0;})//过滤到不符合的数组[2,4,6]
+			.without(data,2,10)//删除掉2 10 [4,6]
+			.last() // [6]
+			.value();
+			
+	console.log(find);		
+	</script>
+</body>
+</html>
