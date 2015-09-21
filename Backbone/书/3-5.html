@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+绑定once方法<br>
+once方法绑定的事件只执行一次，之后即使触发也不执行
+	<script src="../node_modules/underscore/underscore-min.js"></script>
+	<script src="../node_modules/backbone/backbone-min.js"></script>
+	<script>
+	var person=Backbone.Model.extend({
+		defaults:{
+			name:'',
+			sex:'女',
+			age:32,
+			score:120
+		}
+	});
+	var man=new person();
+	var intNum=0;
+	man.once('change',function(model,value){
+		intNum++;
+		console.log('事件触发的次数'+intNum);
+	});
+	man.on('change',function(model,value){
+		console.log("我是on绑定事件");
+	})
+	man.set('age',31);
+	man.set('age',37);
+
+	</script>
+</body>
+</html>

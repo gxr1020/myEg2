@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+使用on方法绑定多个事件 <br>
+第一种适合多个事件执行一个函数的场景(需考虑事件执行时的顺序，有重复执行的可能性) <br>		
+ 第二种 使用哈希型对象的方式绑定多个事件，每个事件都一一对应的关系
+	<script src="../node_modules/underscore/underscore-min.js"></script>
+	<script src="../node_modules/backbone/backbone-min.js"></script>
+	<script>
+		var person =Backbone.Model.extend({
+			defailts:{
+				name:'',
+				sex:'女',
+				age:32,
+				score:120
+			}
+		});
+		var man=new person();
+
+		man.on('change:score change:age',function(model,value){
+			console.log(value);
+			var oldage=model.previous('age');
+			var newage=model.get('age');
+			if(oldage!=newage){
+				console.log('age原值:'+oldage+' age新值:'+newage);
+			}
+			var oldscore=model.previous('score');
+			var newscore=model.get('score');
+			if(oldscore!=newscore){
+				console.log('score原值:'+oldscore+' score新值:'+newscore);
+			}
+		});
+		man.set('age',77);
+		man.set('score',200);
+		console.log("==========================================");
+		man.set({'age':778,'score':1565}); //此时 on里的函数会被执行两次
+
+		console.log("======================第二种on绑定多事件====================");
+
+		// 第二种 on绑定多事件
+		var person2=Backbone.Model.extend({
+			defaults:{
+				name:'',
+				sex:'女',
+				age:32,
+				score:120
+			}
+		});
+		var man2=new person2();
+		var objEvent={
+			'change:score':score_change,
+			'change:age':age_change
+		}
+		man2.on(objEvent);
+		function score_change(model,value){
+			var oldscore=model.previous('score');
+			var newscore=model.get('score');
+			if(oldscore!=newscore){
+				console.log('score原值:'+oldscore+',新值:'+newscore);
+			}
+		}
+		function age_change (model,value) {
+			var oldObject=model.previousAttributes();
+			var newage=value;
+			if(oldObject.age!=newage){
+				console.log('age 原值:'+oldObject.age+',新值:'+newage);
+			}
+
+		}
+// man2.set('age',10);
+// man2.set('score',1000);
+
+man2.set({
+	'age':100,
+	'score':999
+});
+// 第一种适合多个事件执行一个函数的场景(需考虑事件执行时的顺序，有重复执行的可能性)
+// 第二种 使用哈希型对象的方式绑定多个事件，每个事件都一一对应的关系
+	</script>
+</body>
+</html>

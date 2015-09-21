@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+Backone.Events模块API结构<br>
+on<br/>
+off<br/>
+once <br/>
+trigger<br/>
+listenTo<br/>
+listenToOnce<br/>
+stopListening
+
+	<script src="../node_modules/underscore/underscore-min.js"></script>
+	<script src=".
+
+	./node_modules/backbone/backbone-min.js"></script>
+	<script>
+	//监听事件
+	// Obj.on(eventName,function,[context])
+	
+	var person=Backbone.Model.extend({
+		defaults:{
+			name:"",
+			sex:""
+		}
+	});
+	var man=new person();
+	man.on('change',function(){
+		console.log("对象默认值发生了变化");
+	});
+
+	man.set("name","gxr");//改变了person模型上的属性
+	console.log(man.toJSON());
+
+// ===========================================
+	// 监听属性事件
+	// Obj.on(eventName:attrName,function(model,value))
+	var person2=Backbone.Model.extend({
+		defaults:{
+			name:"",
+			sex:"男"
+		}
+	});
+	var man=new person2();
+	man.on("change",function(){
+		console.log("对象默认值发生变化");
+	});
+	man.on("change:sex",function(model,value){
+		console.log("您修改了性别属性，最新值是:"+value);
+	})
+	man.set("sex","男！");
+
+	// 先触发属性事件，后触发change事件
+// ===========================================
+// 使用on方法获取属性修改前的值
+var person3=Backbone.Model.extend({
+	defaults:{
+		name:"",
+		sex:"女",
+		age:32,
+		score:120
+	}
+})
+
+	</script>
+</body>
+</html>

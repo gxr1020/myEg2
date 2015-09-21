@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+使用on方法 (在change事件)获取属性修改前的值 <br/>
+
+previous()方法获取对象中某个属性的原有值<br/>
+previousAttributes()方法返回一个对象，对象包含上一个保存状态中的所有属性原始值
+
+	<script src="../node_modules/underscore/underscore-min.js"></script>
+	<script src="../node_modules/backbone/backbone-min.js"></script>
+	<script>
+	var person=Backbone.Model.extend({
+		defaults:{
+			name:"",
+			sex:"女",
+			age:32,
+			score:121
+		}
+	});
+
+	var man=new person();
+
+	/**	 
+	 * @param   model:当前数据模型对象
+	 * @param  value:表修改后的值	 
+	 */
+	man.on('change:score',function(model,value){
+		console.log(model.toJSON());
+		var oldscore=model.previous("score");
+		if(value>oldscore){
+			console.log("比上次进步了"+(value-oldscore)+"分");
+		}else{
+			console.log("比上次退步了"+(oldscore-value)+"分");
+		}
+	})
+
+	man.set("score",240);
+	console.log(man.previousAttributes());
+	console.log("上一次值:"+man.previous("score"));
+	man.set("score",211);
+	console.log(man.previousAttributes());	
+	console.log("上一次值:"+man.previous("score"));
+
+	man.on('change:age',function(model,value){
+		var oldObject=model.previousAttributes();
+		if(value>oldObject.age){
+			console.log('你又老了'+(value-oldObject.age)+'岁');
+		}else{
+			console.log('你又年轻了'+(oldObject.age-value)+'岁');
+		}
+	})
+	man.set('age',20);
+	man.set('age',50);
+
+
+	</script>
+</body>
+</html>
