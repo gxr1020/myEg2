@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	off移除对象上所有的事件 直接 obj.off();
+	<script src="../node_modules/underscore/underscore-min.js"></script>
+	<script src="../node_modules/backbone/backbone-min.js"></script>
+	<script>
+	var person=Backbone.Model.extend({
+		defaults:{
+			name:'',
+			sex:'女',
+			age:32,score:120
+		}
+	});
+	var man=new person();
+	var m=0,n=0;
+	var callback_a=function  () {
+		m++;
+		console.log('你触发了a事件的次数:'+m);
+	}
+	var callback_b=function  () {
+		n++;
+		console.log('你执行b事件的次数'+n);
+	}
+	man.on('event_a',callback_a);
+	man.on('event_b',callback_b);
+	man.off();//移除了man上的所有事件
+	man.trigger('event_a event_b');
+	</script>
+</body>
+</html>

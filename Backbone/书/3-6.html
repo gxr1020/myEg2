@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+trigger方法触发事件<br>
+用on方法绑定模型对象的自定义事件chang_age_sex和age属性的chang额事件
+然后用trigger触发
+	<script src="../node_modules/underscore/underscore-min.js"></script>
+	<script src="../node_modules/backbone/backbone-min.js"></script>
+	<script>
+	var person=Backbone.Model.extend({
+		defaults:{
+			name:'',
+			sex:'女',
+			age:32,
+			score:120
+		}
+	});
+	var man=new person();
+	man.on('change_age_sex',function  () {
+		console.log('你手动触发了一个自定义事件');
+	});
+	man.on('change:age',function  (model,value) {
+		if(value!=undefined){
+			console.log('您修改后的年龄为'+value);
+		}else{
+			console.log('您手动触发了一个年龄修改事件');
+		}
+	})
+	man.trigger('change_age_sex');///触发事件
+	//此时手动触发的change:age事件 传入的value是undefined
+	man.trigger('change:age');//触发事件
+
+
+	man.set('age',37);
+	</script>
+</body>
+</html>

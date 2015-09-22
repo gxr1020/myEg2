@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	移除事件off方法
+	<script src="../node_modules/underscore/underscore-min.js"></script>
+	<script src="../node_modules/backbone/backbone-min.js"></script>
+
+	<script>
+	var person=Backbone.Model.extend({
+		defaults:{
+			name:'',
+			sex:'女',
+			age:32,
+			score:120
+		}
+	});
+	var man=new person();
+	var m=0,n=0;
+	var callback_a=function  () {
+		m++;
+		console.log('您执行a事件的次数为:'+m);
+	}
+	var callback_b=function  () {
+		n++;
+		console.log('您执行b事件的次数为:'+n);
+	}
+	man.on("event_a",callback_a);//给模型绑定自定义事件
+	man.on('event_b',callback_b);//给模型绑定自定义事件
+	man.off('event_a');//移除模型上的event_a事件
+	man.trigger('event_a event_b');//此时手动触发 两个事件
+	man.off('evnet_a event_b');//此时再次移除
+	man.trigger('event_a event_b');
+	</script>
+</body>
+</html>
