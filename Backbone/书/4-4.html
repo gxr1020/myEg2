@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+监听数据模型的属性值变化
+	<script src="../node_modules/underscore/underscore-min.js"></script>
+	<script src="../node_modules/backbone/backbone-min.js"></script>
+	<script>
+	var student=Backbone.Model.extend({
+		initialize:function  () {
+			// 初始化时监听属性值变化
+			// 此时内部this指向的是实例化后的模型实例
+			this.on('change:Name',function  () {
+				var oldname=this.previous('Name');
+				var newname=this.get('Name');
+				if(oldname!=newname){
+					console.log('原值'+oldname+",新值"+newname);
+				}	
+			});
+		},
+		defaults:{
+			Code:'',
+			Name:'钟xxx',
+			Score:''
+		}
+	});
+	var sutA=new student();
+	sutA.set('Name','郭xxx');
+
+	</script>
+</body>
+</html>
