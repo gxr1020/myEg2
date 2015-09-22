@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	Backbone事件 有on、off、once、trigger方法 <br>
+Backbone的1.0版本后又提供了 listenTo(监听)、listenToOnce(监听一次)、stopListening(停止监听)<br>
+listenTo方法: <br>
+	// view对象监听mode对象的change事件，如果mode对象触发了cahgne事件，则刷新当前的view对象，执行下列的监听方法 <br>
+	// view.listenTo(model,'change',veiw.render); <br>
+	
+	// 上述监听方法也等价于 <br>
+	// model.on('change',view.render,view); <br>
+
+	<script src="../node_modules/underscore/underscore-min.js"></script>
+	<script src="../node_modules/backbone/backbone-min.js"></script>
+	<script>
+	var person=Backbone.Model.extend({
+		defuatls:{
+			name:'',
+			sex:'女',
+			age:32,
+			score:120
+		}
+	});
+	var man=new person();
+	var obj=_.extend({},Backbone.Events);//定义一个Backbone事件对象
+	var intNum=0;
+	obj.listenToOnce(man,'change:age',function  (model,value) {
+		intNum++;
+		console.log('事件触发次数'+intNum);
+	});
+	man.set("age",37);
+	man.set('age',38);
+
+	</script>
+	</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	数据模型
+	<script src="../node_modules/underscore/underscore-min.js"></script>
+	<script src="../node_modules/backbone/backbone-min.js"></script>
+	<script>
+	var student=Backbone.Model.extend({
+		initialize:function  () {
+			intNum++;
+			console.log('这是初始化方法，这是该模型的第'+intNum+"个对象");
+		}
+	});
+	var intNum=0;
+	var stuA=new student();
+	var stuB=new student();
+
+	
+	</script>
+</body>
+</html>

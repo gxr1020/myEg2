@@ -5,6 +5,39 @@
 	<title>Document</title>
 </head>
 <body>
+	特殊事件<br>
+	该事件在对象的任何事件被触发时，都会被自动触发
+	<script src="../node_modules/underscore/underscore-min.js"></script>
+	<script src="../node_modules/backbone/backbone-min.js"></script>
+	<script>
+	var person=Backbone.Model.extend({
+		defaults:{
+			name:'',
+			sex:'女',
+			age:32,
+			score:120
+		}
+	});
+	var man=new person();
+	man.on("change:age",function  () {
+		console.log('您触发了change:age事件');
+	});
+	var event_fun=function  () {
+		console.log('您触发了change:name事件');
+	};
+	man.on('change:name',event_fun);
+	man.on('all',function  (value) {  //all事件有一个测试value！
+		console.log('你触发了all事件 中'+value);
+	});
+	man.set('name','xxx');
+	man.set('age',35);
 	
+	console.log('============模拟触发===========');
+	// trigger模拟事件触发时 会调用两次内部的triggerEvents事件，
+	// 一次是为参数传指定事件，另一次为了固定all事件
+	man.trigger('all');
+	 //第一次输出undefined 
+	 //第二次输出all
+	</script>
 </body>
 </html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script src="../node_modules/underscore/underscore-min.js"></script>
+	<script src="../node_modules/backbone/backbone-min.js"></script>
+	<script>
+	var student=Backbone.Model.extend({
+		initialize:function  () {
+			
+		},
+		defaults:{
+			Code:'',
+			Name:'',
+			Score:''
+		},
+		PringLog:function  () { //自定义模型方法
+			console.log(this.get('Name')+'在'+this.get('Class')+'读小学');
+			console.log(this.escape('Name')+'在'+this.escape('Class')+'读小学');
+		}
+	})
+	var stuA=new student();
+	stuA.set({
+		Code:'10102',
+		Name:'"陈小明"',
+		Score:'300',
+		Class:'一年级<一>班'
+	})
+	stuA.PringLog();//调用模型的扩展方法
+	</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	对象模型赋值方法 <br>
+	单个设置:set(attrName,attrValue); <br>
+	多个设置:set({attrName1:attrValue1,attrName2:attrValue2}); <br>
+	获取方法属性值方法 <br>
+	不编码显示 Obj.get(attrName); <br>
+	html编码显示 Obj.escape(attrName);
+
+	<script src="../node_modules/underscore/underscore-min.js"></script>
+	<script src="../node_modules/backbone/backbone-min.js"></script>
+
+	<script>
+	var student=Backbone.Model.extend({
+		initialize:function  () {
+			// 构造函数(初始化函数)
+		},
+		defaults:{ //模型默认属性
+			Code:'',
+			Name:'',
+			Score:''
+		}
+	});
+	var sutA=new student();
+	sutA.set({
+		Code:'10010',
+		Name:'gxr',
+		Score:'300',
+		Class:'xx<x/xx>xx'
+	});
+	console.log(sutA.get('Code'));//10010
+	// console.log(sutA.get());
+	console.log(sutA.get('Class')); //4-2.html:38 xx<x/xx>xx
+	console.log(sutA.escape('Class')); //xx&lt;x/xx&gt;xx
+	</script>
+</body>
+</html>
