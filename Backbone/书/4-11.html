@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+attributs属性（返回一个对象） 获取对象全部属性值
+<script src="../node_modules/underscore/underscore-min.js"></script>
+	<script src="../node_modules/backbone/backbone-min.js"></script>
+	<script>
+	var student=Backbone.Model.extend({
+		initialize:function  () {
+			
+		},
+		defaults:{
+			Code:'10102',
+			Name:'gxr',
+			Scroe:100
+		}	
+	});
+	var stuE=new student();
+	stuE.set({
+		Code:'1025',
+		Name:'gxr2',
+		Scroe:651
+	});
+	console.log(stuE.attributes);
+	var attrs=stuE.attributes;
+	for(var i in attrs){
+		console.log(i+":"+stuE.attributes[i]);
+	}
+	</script>
+</body>
+</html>

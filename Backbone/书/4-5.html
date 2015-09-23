@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+get 获取数据模型属性值
+	<script src="../node_modules/underscore/underscore-min.js"></script>
+	<script src="../node_modules/backbone/backbone-min.js"></script>
+<script>
+	var student=Backbone.Model.extend({
+		defaults:{
+			Code:'',
+			Name:'',
+			Score:''
+		}
+	});
+	var stuA=new student({
+		Code:"102013",
+		Name:'xxx',
+		Score:''
+	});
+	console.log('学号'+stuA.get('Code')+' 性别'+stuA.get('Sex')+' 分数'+stuA.get('Score'))
+</script>
+</body>
+</html>

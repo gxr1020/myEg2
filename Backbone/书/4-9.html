@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	更新数据回滚 <br>
+	Backbone中调用set方法，可silent属性设置true <br>
+	静默方式更新数据，为了数据安全性可针对更新数据进行第二次验证<br>
+	如果不符合调用对象的previous方法回滚上一次数据
+
+	<script src="../node_modules/underscore/underscore-min.js"></script>
+	<script src="../node_modules/backbone/backbone-min.js"></script>
+	<script>
+	var student=Backbone.Model.extend({
+		initialize:function  () {
+			this.on('invalid',function  (model,error) {
+				console.log(error);
+			});
+			this.on('change:Name',function  (model,value) {
+				console.log('触发了Name属性修改事件');
+			});
+		},
+		validate:function  (attrs) {
+			console.log('触发了验证');
+			if(!_.isString(attrs.Name)){return 'Name需字符串'}
+			if(!_.isNumber(attrs.Score)){return '成绩需数字'}	
+		},
+		defaults:{
+			Code:'10120',
+			Name:'12131',
+			Score:123
+		}
+	});
+	var stuE=new student();
+	stuE.set({
+		'Code':'11111',
+		'Name':123,
+		'Score':'456'
+	},{'silent':true});//使用静默模式修改数据
+	
+	console.log(stuE.toJSON());
+
+	if(!_.isNumber(stuE.get('Score'))||!_.isString(stuE.get('Name'))){
+		console.log('开始回滚数据');
+		stuE.set({
+			'Name':stuE.previous('Name'),//回滚到上一次数据
+			'Score':stuE.previous('Score')
+		})
+	}
+	console.log(stuE.toJSON());
+
+	</script>
+</body>
+</html>

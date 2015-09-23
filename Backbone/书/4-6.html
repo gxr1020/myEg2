@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+用set批量重置属性值
+	<script src="../node_modules/underscore/underscore-min.js"></script>
+	<script src="../node_modules/backbone/backbone-min.js"></script>
+	<script>
+	var student=Backbone.Model.extend({
+		defaults:{
+			Code:'',
+			Name:'',
+			Score:''
+		}
+	});
+	var stuA=new student({
+		Code:'10201',
+		Name:'gxr',
+		Score:'500'
+	});
+
+	var stuB=new student();
+	//此时就是用set方法批量重置
+	stuB.set({
+		Code:'102652',
+		Name:'gxr2',
+		Score:'300'
+	});
+
+	console.log(stuA.toJSON());
+	console.log(stuB.toJSON());
+	
+	</script>
+</body>
+</html>

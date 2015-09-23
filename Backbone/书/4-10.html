@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+unset方法删除指定属性的数据（删除了 但可以回滚） <br>
+clear方法删除数据对象的所有属性（删除了 但可以回滚）
+<br>
+	<script src="../node_modules/underscore/underscore-min.js"></script>
+	<script src="../node_modules/backbone/backbone-min.js"></script>
+	<script>
+	var student=Backbone.Model.extend({
+		initialize:function  () {
+			
+		},
+		defaults:{
+			Code:'102012',
+			Name:'gxr',
+			Score:100
+		}
+	});
+	var stueE=new student();
+	stueE.set({
+		Code:'102651',
+		Name:'gxr22',
+		Score:7225
+	});
+	// 删除name属性、
+	stueE.unset('Name');
+	console.log(stueE.get('Name'));
+	console.log(stueE.toJSON());
+	console.log('回滚');
+	stueE.set('Name',stueE.previous('Name'));
+	console.log(stueE.toJSON());
+	//清除全部数据
+	stueE.clear();
+	console.log(stueE.toJSON());
+
+	stueE.set('Name',stueE.previous('Name'));
+	console.log(stueE.toJSON());
+	</script>
+</body>
+</html>

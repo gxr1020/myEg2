@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	关闭数据验证
+	<br>
+ （在set时silent属性设置true 表静默式修改数据，修改数据时不触发任何事件）
+ <script src="../node_modules/underscore/underscore-min.js"></script>
+ <script src="../node_modules/backbone/backbone-min.js"></script>
+ <script>
+ var student=Backbone.Model.extend({
+ 	initialize:function  () {
+ 		this.on('invalid',function (model,error) {
+ 				console.log(error);
+ 		});
+ 		this.on('change:Name',function  (model,value) {
+ 			console.log('您触发了Name属性修改了事件');
+ 		});
+ 	},
+ 	validate:function  (attrs) {
+ 		console.log('触发了验证!');
+ 		if(!_.isString(attrs.Name)){return '姓名必须字符串'}
+ 		if(!_.isNumber(attrs.Score)){return '分数必须数字'}	
+ 		console.log('验证通过!');
+
+ 	},
+ 	defaults:{
+ 		Code:'10010',
+ 		Name:'张三',
+ 		Score:100
+ 	}
+ });
+ var stuE=new student();
+ stuE.set({
+ 	Code:'10210',
+ 	Name:'gxr',
+ 	Score:216
+ });//没触发验证
+console.log("----------------------1---------------");
+  stuE.set({
+ 	Code:'10211',
+ 	Name:'gxr2',
+ 	Score:2162
+ },{'validate':true});//触发change:Name 和触发验证
+
+console.log("----------------------2---------------");
+
+  // 静默模式 不通过验证也不触发事件 直接修改
+stuE.set({
+	Code:'10203',
+	Name:4445,
+	Score:'213'
+},{'silent':true});
+console.log(stuE.toJSON());
+// stuE.set({
+// 	Code:'10203',
+// 	Name:4445,
+// 	Score:'213'
+// },{'validate':true,'silent':true});
+
+ </script>
+
+</body>
+</html>

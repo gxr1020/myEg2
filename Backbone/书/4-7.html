@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+开启数据验证
+	<script src="../node_modules/underscore/underscore-min.js"></script>
+	<script src="../node_modules/backbone/backbone-min.js"></script>
+	<script>
+		var student=Backbone.Model.extend({
+			initialize:function  () {
+				//给模型绑定invalid事件
+				this.on('invalid',function  (model,error) {
+					console.log(error);
+				})
+			},
+
+			validate:function  (attrs) { 
+			//每次set属性值时都会触发，如果验证不通过有返回值会触发 模型上的invalid事件
+				console.log('x');
+				if(!_.isString(attrs.Name)){return '姓名必须字符串'}
+				if(!_.isNumber(attrs.Score)){return '分数必须数字'}	
+			},
+			defaults:{
+				Code:'10001',
+				Name:'张三',
+				Score:100
+			}
+		});
+		var stuE=new student();
+		stuE.set({
+			Code:'10105',
+			Name:1235, 
+			Score:500
+		},{'validate':true});//设置属性值时 必须validate=true 才会启动验证
+
+		//因为name 验证失败 所以整个数据模型设置都不通过 使用默认属性值
+		console.log(stuE.toJSON()); //Code: "10001", Name: "张三", Score: 100
+
+		stuE.set({
+			Code:'1256',
+			Name:'s1',
+			Score:'650'
+		},{'validate':true})
+	</script>
+
+
+
+
+
+</body>
+</html>
