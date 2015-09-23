@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script src="../node_modules/underscore/underscore-min.js"></script>
+	<script src="../node_modules/backbone/backbone-min.js"></script>
+	<script>
+	var student=Backbone.Model.extend({
+		initalize:function  () {
+			
+		},
+		defaults:{
+			Code:"10221",
+			Name:'gxr1',
+			Score:100
+		}
+	});
+
+	var stuE=new student();
+
+	console.log(stuE.previous('Name')); //undefined
+	console.log(stuE.previousAttributes()); //object{}
+
+	stuE.set({
+		Code:'10261',
+		Name:'gxr2',
+		Score:60
+	});
+
+
+	console.log(stuE.toJSON());
+	console.log(stuE.attributes);
+	console.log(stuE.previousAttributes());
+	console.log('------------------------------------');
+
+	stuE.set({
+		Code:'105633',
+		Name:'gxr3',
+		Score:120
+	});
+	console.log(stuE.toJSON());
+	console.log(stuE.previousAttributes());
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+		<script src="../node_modules/underscore/underscore-min.js"></script>
+	<script src="../node_modules/backbone/backbone-min.js"></script>
+	<script>
+	var student=Backbone.Model.extend({
+		initialize:function  () {
+			
+		},
+		url:'./save.php',
+		defaults:{
+			Code:'10001',
+			Name:'gxr',
+			Score:100
+		}
+	});
+
+	var stuE=new student();
+	stuE.set({
+		Code:'10107',
+		Name:'gxr2',
+		Score:777
+	});
+	stuE.save();
+	</script>
+
+</body>
+</html>
