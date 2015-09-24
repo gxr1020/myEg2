@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+desfroy 方法，以<em>delete</em>请求方式向服务器发送对象的ID数据<br/>
+因为必须发送ID好，如果不存在可以通过idAttribute属性设置，否则不会发送数据请求操作
+
+	<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../node_modules/underscore/underscore-min.js"></script>
+	<script src="../node_modules/backbone/backbone-min.js"></script>
+	<script>
+
+	var student=Backbone.Model.extend({
+		initialize:function  () {
+			this.on('destroy',function  () {
+				console.log('正在调用desfroy方法');
+			});
+		},
+		url:'./destroy.php',
+		idAttribute:'Code' ///该属性指定了 哪个属性key为 对象id
+	});
+	var stuE=new student({
+		Code:'1020111', //此时 10201为stuE的id,
+		Name:'gxr1020',
+		age:'123'
+	})
+	stuE.destroy(
+	// {
+	// 	success:function  (model,response) {
+	// 		console.log(response);
+	// 			if(response.code=='0'){
+	// 				console.log('Code为'+model.get('Code')+' 的数据已删除');
+	// 			}
+	// 	},
+	// 	error:function  (error) {
+	// 		console.log('error')
+	// 	}
+	// 	//, wait:false //需通过验证
+	// }
+	)
+	</script>
+
+</body>
+</html>

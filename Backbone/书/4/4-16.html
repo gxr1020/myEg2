@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+fetch方法获取服务器数据(get) <br/>
+成功会设置对象模型值
+<input type="button" vlaue="向服务器发送fetch" id="btn1">
+	<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../node_modules/underscore/underscore-min.js"></script>
+	<script src="../node_modules/backbone/backbone-min.js"></script>
+	<script>
+	var student=Backbone.Model.extend({
+		initialize:function  () {
+			
+		},
+		url:'./fetch.php',
+		defaults:{
+			'Code':'默认',
+			'Name':'默认Name',
+			'Score':'默认Score'
+		}
+	});
+	var stuE=new student();
+	
+	$(function  () {
+		$('body').append('<br/>'+stuE.get('Code')+'<br/>'+stuE.get('Name')+'<br/>'+stuE.get('Score')+'<br/>');
+		$('#btn1').on('click',function  () {
+			stuE.fetch({
+				success:function  (model,response) {
+					console.log(stuE.toJSON());
+				$('body').append('<br/>'+stuE.get('Code')+'<br/>'+stuE.get('Name')+'<br/>'+stuE.get('Score')+'<br/>');
+
+				},
+				error:function  (err) {
+					console.log('err');
+				}
+			});
+
+			
+		})
+	})
+	// Backbone.sync=function  (method,model) {
+	// }
+	</script>
+</body>
+</html>
