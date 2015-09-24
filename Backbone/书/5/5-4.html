@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+shift//删除数据集合第一条数据模型对象  <br>
+pop//删除数据集合最后一条数据模型对象 <br>
+remove(models,options) <br>
+remove(集合对象.models[x])//删除数据集合对象中，第x条数据模型对象 <br>
+也可通过id <br>
+remove(模型对象的id)//删除集合对象最后模型id的模型对象 <br>
+	<script src="../../node_modules/underscore/underscore-min.js"></script>
+	<script src="../../node_modules/backbone/backbone-min.js"></script>
+	<script>
+	var students=Backbone.Model.extend({
+		defaults:{
+			Code:'',
+			Name:'',
+			Score:0
+		}
+	});
+	var stumdoels=[
+		{
+			Code:'123',
+			Name:'gxr1',
+			Score:123
+		},{
+			Code:'456',
+			Name:'gxr2',
+			Score:456
+		},{
+			Code:'789',
+			Name:'gxr3',
+			Score:789
+		},{
+			Code:'101112',
+			Name:'gxr4',
+			Score:101112
+		},{
+			Code:'131415',
+			Name:'gxr5',
+			Score:131415
+		}];
+		var stuList=new Backbone.Collection(stumdoels);
+		stuList.shift(); //删除第一条模型对象
+		stuList.remove(stuList.models[3]); //删除第四条模型对象
+		stuList.pop(); //删除最后一条模型对象
+
+		stuList.remove('c3'); //删除id c3的模型对象
+		var i,len=stuList.length;
+		for(i=0;i<len;i++){
+			console.log(stuList.models[i].toJSON());
+		}
+
+	</script>
+</body>
+</html>

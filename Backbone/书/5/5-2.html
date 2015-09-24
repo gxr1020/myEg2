@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	直接实例集合对象
+	<script src="../../node_modules/underscore/underscore-min.js"></script>
+	<script src="../../node_modules/backbone/backbone-min.js"></script>
+
+	<script>
+	var students=Backbone.Model.extend({
+		defaults:{
+			Code:'',
+			Name:'',
+			Score:0
+		}
+	});
+	var stumdoels=[
+	{
+		Code:'123',
+		Name:'gxr1',
+		Score:123
+	},{
+		Code:'456',
+		Name:'gxr2',
+		Score:456
+	},{
+		Code:'789',
+		Name:'gxr3',
+		Score:789
+	}];
+// !!此时直接实例化集合对象
+	var list=new Backbone.Collection(stumdoels,{
+		model:students
+	});
+
+	for(var i=0;i<list.length;i++){
+		console.log(list.models[i].toJSON());
+	}
+	</script>
+</body>
+</html>

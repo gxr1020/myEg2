@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+		<script src="../../node_modules/underscore/underscore-min.js"></script>
+	<script src="../../node_modules/backbone/backbone-min.js"></script>
+	<script>
+	var students=Backbone.Model.extend({
+		defaults:{
+			Code:'',
+			Name:'',
+			Score:''
+		}
+	});
+	// 数据数组
+	var stumdoels=[
+	{
+		Code:'123',
+		Name:'gxr1',
+		Score:123
+	},{
+		Code:'456',
+		Name:'gxr2',
+		Score:456
+	},{
+		Code:'789',
+		Name:'gxr3',
+		Score:789
+	}];
+
+	//
+	var studentList=Backbone.Collection.extend({
+		model:students
+	});
+	var list=new studentList(stumdoels);
+
+	for(var i=0;i<list.length;i++){
+		console.log(list.models[i].toJSON());
+	}
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+add(models,options) //如果没指定位置会添加到集合对象尾部 <br>
+push //添加到集合对象尾部 <br>
+unshift //添加到集合对象头部 <br>
+	<script src="../../node_modules/underscore/underscore-min.js"></script>
+	<script src="../../node_modules/backbone/backbone-min.js"></script>
+<script>
+	var students=Backbone.Model.extend({
+		defaults:{
+			Code:'',
+			Name:'',
+			Score:0
+		}
+	});
+	var stumdoels=[
+		{
+			Code:'123',
+			Name:'gxr1',
+			Score:123
+		},{
+			Code:'456',
+			Name:'gxr2',
+			Score:456
+		},{
+			Code:'789',
+			Name:'gxr3',
+			Score:789
+		}];
+var newStumdoels=[
+		{
+			Code:'123[new]',
+			Name:'gxr1[new]',
+			Score:123
+		},{
+			Code:'456[new]',
+			Name:'gxr2[new]',
+			Score:456
+		},{
+			Code:'789[new]',
+			Name:'gxr3[new]',
+			Score:789
+		}];
+	var stulist=new Backbone.Collection(stumdoels,{
+		model:students
+	});
+	stulist.push(newStumdoels[0]); //添加到stulist集合的尾部
+	stulist.unshift(newStumdoels[1]);//添加到stulist集合的头部
+	stulist.add(newStumdoels[2],{at:2});//添加到stulist集合的第三位
+
+	var i,len=stulist.length;
+	for(i=0;i<len;i++){
+		console.log(stulist.models[i].toJSON());
+	}
+
+</script>
+
+</body>
+</html>

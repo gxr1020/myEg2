@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+自定义方法 和 集合对象的filter方法
+	<script src="../../node_modules/underscore/underscore-min.js"></script>
+	<script src="../../node_modules/backbone/backbone-min.js"></script>
+	<script>
+	var students=Backbone.Model.extend({
+		defaults:{
+			Code:'',
+			Name:'',
+			Score:0
+		}
+		// ,
+		// initiazly
+	})
+	var stumdoels=[
+		{
+			Code:'123',
+			Name:'gxr1',
+			Score:123
+		},{
+			Code:'456',
+			Name:'gxr2',
+			Score:456
+		},{
+			Code:'789',
+			Name:'gxr3',
+			Score:789
+		}];
+
+	var stulist=Backbone.Collection.extend({
+		model:students,
+		good:function  () {
+		 //自定义good方法 ，然后调用 集合模型对象的filter方法
+			return this.filter(function  (stu) {
+				return stu.get('Score')>400;
+			})	
+		}
+	});
+	var stulistSL=new stulist(stumdoels);
+	var stufilter=stulistSL.good();
+	console.log(stufilter);
+	for(var i=0;i<stufilter.length;i++){
+		console.log(stufilter[i].toJSON());
+	}
+
+	</script>
+</body>
+</html>

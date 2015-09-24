@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+查找集合中的模型(返回的都是!!模型对象))
+obj.get(id) //通过指定ID号获取集合中的某一模型对象 <br>
+obj.at(index) //通过指定索引号获取集合中某一模型对象 <br>
+obj.findWhere(attrs) //通过{key:value}查找指定 某一模型对象<br>
+obj.where(attrs,first) //通过{key:value}查找指定 某一模型对象,
+first为true时查找集合中符合要求的第一个，
+为false时查找集合符合要求的全部
+
+	<script src="../../node_modules/underscore/underscore-min.js"></script>
+	<script src="../../node_modules/backbone/backbone-min.js"></script>
+	<script>
+var student=Backbone.Model.extend({
+	defaults:{
+		Code:'',
+		Name:'',
+		Score:0
+	},
+	idAttribute:'Code'//指定Code属性为Id
+});
+var stumdoels=[
+		{
+			id:1,
+			Code:'123',
+			Name:'gxr1',
+			Score:123
+		},{
+			id:2,
+			Code:'456',
+			Name:'gxr2',
+			Score:456
+		},{
+			id:3,
+			Code:'789',
+			Name:'gxr3',
+			Score:789
+		},{
+			id:4,
+			Code:'123[new]',
+			Name:'gxr1[new]',
+			Score:123
+		},{
+			id:5,
+			Code:'456[new]',
+			Name:'gxr2[new]',
+			Score:456
+		},{
+			id:6,
+			Code:'789[new]',
+			Name:'gxr3[new]',
+			Score:789
+		}];
+	var stuList=new Backbone.Collection(stumdoels);
+	var i,len=stuList.length;
+	for(i=0;i<len;i++){
+		console.log(stuList.models[i].toJSON());
+	}
+	console.log('=========查询后==========')
+	var getModel=stuList.get(2);
+	var atModel=stuList.at(2);
+	var findWhereModel=stuList.findWhere({Score:123});
+	var whereModel=stuList.where({Score:123},false)
+console.log('get')
+console.log(getModel.toJSON());
+console.log('at')
+console.log(atModel.toJSON());
+console.log('findWhere')
+console.log(findWhereModel.toJSON());
+len=whereModel.length;
+console.log('Where')
+
+for(i=0;i<len;i++){
+	console.log(whereModel[i].toJSON());
+}
+
+	</script>
+</body>
+</html>
