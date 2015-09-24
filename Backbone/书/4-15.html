@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	在调用save方法向服务器保存数据时，不仅可以配置对象中添加
+	<br>
+	sucess或error函数，还可以将wait属性设置为true，
+	<br>
+	wait为true时，将会调用validate方法，对发送数据的有效性进行验证，
+	<br>
+	如果验证没过，不会向服务器发送数据，对象的数据将进行回滚
+
+	<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../node_modules/underscore/underscore-min.js"></script>
+	<script src="../node_modules/backbone/backbone-min.js"></script>
+	<script>
+	var student=Backbone.Model.extend({
+		initialize:function  () {
+			
+		},
+		url:"./save.php",
+		defaults:{
+			Code:'10253',
+			Name:'gxr2',
+			Score:125
+		}
+	});
+	var sutE=new student();
+	sutE.save({
+		Code:'123123',
+		Name:'gxr3',
+		Score:456
+	},{
+		sucess:function  (model,response) {
+			console.log(response);
+		},wait:true
+	});
+	console.log(sutE.toJSON());//Object {Code: "10253", Name: "gxr2", Score: 125}
+
+	// 如果加 wait:true  则验证通过才 会set到数据模型上
+	// 
+	// 如果没加 wait:true 则 save 就会 set到数据模型上
+	// var student=Backbone.Model.extend({
+	// 	initialize:function  () {
+			
+	// 	},
+	// 	url:"./save.php",
+	// 	defaults:{
+	// 		Code:'10253',
+	// 		Name:'gxr2',
+	// 		Score:125
+	// 	}
+	// });
+	// var sutE=new student();
+	// sutE.save({
+	// 	Code:'123123',
+	// 	Name:'gxr3',
+	// 	Score:456
+	// },{
+	// 	sucess:function  (model,response) {
+	// 		console.log(response);
+	// 	}
+	// });
+	// console.log(sutE.toJSON());//Object {Code: "123123", Name: "gxr3", Score: 456}
+	</script>
+</body>
+</html>

@@ -5,6 +5,7 @@
 	<title>Document</title>
 </head>
 <body>
+<script src="../node_modules/jquery/dist/jquery.min.js"></script>
 		<script src="../node_modules/underscore/underscore-min.js"></script>
 	<script src="../node_modules/backbone/backbone-min.js"></script>
 	<script>
@@ -26,7 +27,16 @@
 		Name:'gxr2',
 		Score:777
 	});
-	stuE.save();
+	// stuE.save();
+	stuE.save(null,{
+		success:function  (model,response) {
+			console.log(response.code);
+			alert(response.code);
+		},
+		error:function  () {
+			console.log('error');
+		}
+	});
 	</script>
 
 </body>

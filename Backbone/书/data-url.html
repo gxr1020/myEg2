@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<p>用html5的fileReader生成Data Url</p>
+	<input type="file" value="" onchange="buildDataUrl(this)" style="border:1px solid #808080;width:300px">
+	<br>
+	<textarea id="textBase64" cols="50" rows="20"></textarea>
+	<img src="" alt="" id="imgView" style="width:300px">
+<script>
+	function buildDataUrl (source) {
+		console.log(source.files[0]);
+		var file=source.files[0];
+		if(window.FileReader){
+				console.log('x');
+			
+			var fr=new FileReader();
+			fr.onloadend=function  (e) {
+				console.log('x');
+				document.getElementById('textBase64').value=e.target.result;
+				document.getElementById('imgView').src=e.target.result;
+			};
+			fr.readAsDataURL(file);
+
+		}
+	}
+</script>
+</body>
+</html>
