@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+【最好的做法】
+	<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+	<script>
+	var wait=function () {
+		var dtd=$.Deferred(); //内部建立有关deferred对象
+		var tasks=function(){
+			console.log('执行完毕');
+			dtd.resolve();//改变deferred对象的执行状态为成功
+		};
+		setTimeout(tasks,2000);
+		return dtd.promise();///返回promise对象（只开放与改变执行状态无关的方法（比如done()方法和fail()方法），屏蔽与改变执行状态有关的方法（比如resolve()方法和reject()方法））
+	};
+
+	$.when(wait())
+	.done(function(){
+		console.log('成功');
+	})
+	.fail(function(){
+		console.log('失败');
+	})
+	</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+<script>
+
+// deferred对象三种状态 成功 失败 正在执行
+	var dtd=$.Deferred();
+	var wait=function  (dtd) {
+		var tasks=function  () {
+			console.log('执行完毕!');
+			// alert('执行完毕')
+
+
+			// dtd.resolve();//改变deferred对象的执行状态 (改为成功)
+			// dtd.reject();//改变deferred对象的执行状态 (改为失败)
+			dtd.notifyWith(); //改变deferred对象的执行状态(改为正在执行)
+
+		};
+		setTimeout(tasks,2000); 
+		return dtd;
+	};
+
+	$.when(wait(dtd))
+	.done(function(){
+		console.log('成功');
+	})
+	.fail(function(){
+		console.log('失败');
+	})
+	.progress(function(){
+		console.log('正在执行...');
+	})
+
+// !!此时的dtd是个全局
+// 可通过 
+// dtd.resolve(); //再次改变执行状态 使得内部状态改变
+
+
+</script>
+	
+</body>
+</html>
