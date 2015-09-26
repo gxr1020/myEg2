@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	集合模型对象，fetch方法获取集合对象初始化的数据(get) <br>
+	fetch Get请求
+	<script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../../node_modules/underscore/underscore-min.js"></script>
+	<script src="../../node_modules/backbone/backbone-min.js"></script>
+	<script>
+	var student=Backbone.Model.extend({
+		defaults:{
+			Code:'',
+			Name:'',
+			Score:0
+		}
+	});
+	var stulist=Backbone.Collection.extend({
+		initialize:function  () {
+			console.log('---------------初始化事件触发---------------');
+			this.on('reset',function(render){
+				console.log('---------------reset重置事件触发---------------');
+				console.log('每次fetch方法向服务器发送请求获取数据时都可以触发，需reset:true');
+				var i,len=render.models.length;
+				for(i=0;i<len;i++){
+					console.log(render.models[i].toJSON());
+				}
+			})
+		},
+		mdoels:student,
+		url:'./fetch2.php'
+	})
+	var stuLIST=new stulist();
+	stuLIST.fetch({
+		reset:true,
+		success:function(collection,resp,options){
+			console.log('-------------成功获取数据----------------')
+			var i,len=collection.models.length;
+			for(i=0;i<len;i++){
+				console.log(collection.models[i].toJSON());
+			}
+		}
+	})
+
+	stuLIST.fetch({
+		reset:true,
+		success:function(collection,resp,options){
+			console.log('-------------第二次成功获取数据----------------')
+			var i,len=collection.models.length;
+			for(i=0;i<len;i++){
+				console.log(collection.models[i].toJSON());
+			}
+		}
+	})
+
+	stuLIST.fetch({
+		reset:false,//不触发rest事件
+		success:function(collection,resp,options){
+			console.log('-------------第三次成功获取数据----------------')
+			var i,len=collection.models.length;
+			for(i=0;i<len;i++){
+				console.log(collection.models[i].toJSON());
+			}
+		}
+	})
+	</script>
+</body>
+</html>

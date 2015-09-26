@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	集合中模型对象的排序!!
+	<br>
+	集合对象sort方法 排序，！注集合对象必须先定义comparator 方法  当排序的规则
+	<br>
+	comparator方法 有两个参数 mdoel1，model2
+	<br>
+	sort最强大的功能是 在每次向模型集合添加删除模型时都会被调用
+	<br>
+	sort虽然强大但有两个问题:
+	<br>
+	1.不适合大量模型对象，每次添加删除都会重新排序，执行效率会很慢
+	<br>
+	2.屏蔽了其他按索引插入或删除模型对象的功能，如at 都会无效
+	<script src="../../node_modules/underscore/underscore-min.js"></script>
+	<script src="../../node_modules/backbone/backbone-min.js"></script>
+
+	<script>
+	var student=Backbone.Model.extend({
+		defaults:{
+			Code:'',
+			Name:'',
+			Score:0
+		},
+		idAttribute:'Code'
+	});
+	var stumdoels=[
+		{
+			// id:1,
+			Code:'123',
+			Name:'gxr1',
+			Score:123
+		},{
+			// id:2,
+			Code:'456',
+			Name:'gxr2',
+			Score:456
+		},{
+			// id:3,
+			Code:'789',
+			Name:'gxr3',
+			Score:789
+		},{
+			// id:4,
+			Code:'123[new]',
+			Name:'gxr1[new]',
+			Score:123
+		},{
+			// id:5,
+			Code:'456[new]',
+			Name:'gxr2[new]',
+			Score:456
+		},{
+			// id:6,
+			Code:'789[new]',
+			Name:'gxr3[new]',
+			Score:789
+		}];
+
+		var sutlist=new Backbone.Collection(stumdoels,{
+			model:student,
+			comparator:function  (model_1,model_2) {
+				var intcomp=model_1.get('Score')>model_2.get('Score');
+				// return intcomp?0:1;  //降序
+				return intcomp?1:0; 升序
+			}
+		});
+		sutlist.sort();
+		var i,len=sutlist.length;
+		for(i=0;i<len;i++){
+			console.log(sutlist.models[i].toJSON());
+		}
+		console.log('----------------------------');
+		// sutlist.remove('789'); //可根据id删除
+		sutlist.remove(sutlist.models[3]); //删除第四条
+		
+		sutlist.add({
+			Code:'1205',
+			Name:'新添加',
+			Score:111
+		})
+		console.log('--------------添加或删除后会自动排序--------------');
+		i,len=sutlist.length;
+		for(i=0;i<len;i++){
+			console.log(sutlist.models[i].toJSON());
+		}
+	</script>
+</body>
+</html>

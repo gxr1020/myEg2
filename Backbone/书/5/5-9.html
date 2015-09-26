@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+create方法与服务器同步数据 <br>
+如果模型对象存在则post 不存在则 put <br>
+
+!!!! 注意请求的数据和响应的数据 默认都是json格式大数据 返回字符串 会错误！！通过源码可以修改!!
+<img src="无标题.png" height="913" width="1258" alt="">
+	<script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../../node_modules/underscore/underscore-min.js"></script>
+	<script src="../../node_modules/backbone/backbone.js"></script>
+	<script>
+	var student=Backbone.Model.extend({
+		defaults:{
+			Code:'89',
+			Name:'gxr[old]',
+			Score:100
+		}
+	});
+	var stulist=Backbone.Collection.extend({
+		model:student,
+		url:'./create.php'
+	});
+	var  stus=new stulist();
+
+	stus.create({
+		Code:'123123',
+		Name:'gxr',
+		Score:750
+	},{
+		success:function  (collection,resp,options){
+			console.log(collection);
+			console.log(resp);
+			console.log(options);
+			console.log('成功');
+		},
+		error:function(error){
+			console.log('error');
+			console.log(error.toJSON());
+		}
+	});
+	</script>
+
+</body>
+</html>

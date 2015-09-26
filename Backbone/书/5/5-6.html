@@ -67,15 +67,23 @@ var stumdoels=[
 	var getModel=stuList.get(2);
 	var atModel=stuList.at(2);
 	var findWhereModel=stuList.findWhere({Score:123});
-	var whereModel=stuList.where({Score:123},false)
+	var whereModel2=stuList.where({Score:123},true) ; //结果与findWhere查找差不多
+	var whereModel=stuList.where({Score:123},false);
+
+
 	console.log('get')
 	console.log(getModel.toJSON());
 	console.log('at')
 	console.log(atModel.toJSON());
 	console.log('findWhere')
 	console.log(findWhereModel.toJSON());
+	console.log('where')
+	console.log(whereModel2.toJSON());
+console.log('where2')
+
+
 	len=whereModel.length;
-	console.log('Where');
+
 
 	for(i=0;i<len;i++){
 		console.log(whereModel[i].toJSON());
