@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<input type="button" id="notifyButton">
+    <script>
+// document.getElementById('notifyButton').onclick = function(){
+//     //判断浏览器是否支持notification
+//     if(window.webkitNotifications){
+//         //判断当前页面是否被允许发出通知
+//         if(webkitNotifications.checkPermission==0){
+//             var icon_url = 'http://www.w3.org/';
+//             var title = 'Hello HTML5';
+//             var body = 'I will be always here waiting for you!';
+//             var WebkitNotification = webkitNotifications.createNotification(icon_url, title, body);
+//             WebkitNotification.show();
+//         }else{
+//             document.getElementById('requestbutton').onclick = function () {
+//                 webkitNotifications.requestPermission();
+//             };
+//         }
+//     }else alert("您的浏览器不支持桌面通知特性，请下载谷歌浏览器试用该功能");
+// };
+
+if(window.webkitNotifications){
+if(window.webkitNotifications.checkPermission()==0){
+setInterval(function(){
+var popup = window.webkitNotifications.createNotification("avator.jpg","如花温馨提醒：","长时间面对电脑眼睛会瞎的，休息一下~！");
+popup.show();
+},1000 * 60 * 20); }else{
+window.webkitNotifications.requestPermission();
+}
+}else {
+        console.log(456);
+        var notification = new Notification("我的消息",{
+            body : '内容',
+            iconUrl : 'https://dn-st.b0.upaiyun.com/v4.9.x/images/49751d86.touch-icon-ipad.png',
+            tag : {} // 可以加一个tag
+        });
+        notification.show();
+    } 
+    </script>
+</body>
+</html>

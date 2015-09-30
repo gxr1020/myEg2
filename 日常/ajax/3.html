@@ -1,0 +1,37 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src='http://code.jquery.com/jquery-1.7.2.min.js'></script>
+    <script>
+        cityid=101010300; //城市ID
+        week=1; // 1为一周天气 0为今日天气
+        function callback(data){
+            eval('var data='+data);
+            var info=data.weatherinfo;
+            if(week){
+                var content='城市:'+info.city+'<br/>日期:'+info.date_y+' '+info.week+'<br/>';
+                content+='今日穿衣指数 :'+info.index+' '+info.index_d+'<br/>';
+                for(var i=1 ;i<7;i++){
+                    content+='['+i+']天气: '+eval('info.weather'+i)+' ,温度: '+eval('info.temp'+i)+'<br/>';
+                }
+            }else{
+                var content='城市:'+info.city+' , 天气:'+info.weather+' , 气温:'+info.temp1+' - '+info.temp2+' , 更新时间:'+infoNaNime;
+            }
+            $('#weather').html(content);
+        }
+        $(function(){
+            var src='<scr'+'ipt type="text/javascript" src="http://www.shayiming.cn/json/weather.php?city='+cityid+'&jsonp=callback';
+            if(week){
+                src+='&week=on';
+            }
+            src+='"></scri'+'pt>';
+            $('head').append(src);
+        });
+    </script>
+</head>
+
+<body>
+    <div id='weather'>这里显示天气信息</div>
+</body>
+</html>

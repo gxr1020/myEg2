@@ -20,6 +20,7 @@ create方法与服务器同步数据 <br>
 			Name:'gxr[old]',
 			Score:100
 		}
+
 	});
 	var stulist=Backbone.Collection.extend({
 		model:student,
@@ -30,7 +31,8 @@ create方法与服务器同步数据 <br>
 	stus.create({
 		Code:'123123',
 		Name:'gxr',
-		Score:750
+		Score:750,
+		// id:1   有id号的是put更新数据模型，没id号的是post 创建数据模型
 	},{
 		success:function  (collection,resp,options){
 			console.log(collection);

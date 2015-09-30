@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<p>
+		wait属性为ture表只有客户端与服务器成功完成数据同步后才会将同步的模型对象添加到集合对象中<br>
+		如果false或不添加则不管客户端与服务器数据同步操作是否成功，都将同步模型对象到集合对象中
+
+	</p>
+	<p>
+		silent属性ture表静默同步，不需要客户端与服务端数据同步成功，就可以向集合对象添加模型数据，与
+		不添加wait属性或该属性为false效果一样
+	</p>
+	<p>
+		wait:false 会触发add事件 (本地集合有添加) <br>
+		silent:true不会触发add事件(本地集合有添加)
+	</p>
+	<script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../../node_modules/underscore/underscore-min.js"></script>
+	<script src="../../node_modules/backbone/backbone.js"></script>
+	<script>
+	var student=Backbone.Model.extend({
+		defaults:{
+			Code:'10001',
+			Name:'gxr',
+			Score:100
+		},
+		idAttribute:'Code'
+	});
+	var stulist=Backbone.Collection.extend({
+		initialize:function  () {
+			this.on('add',function(model,respnse,options){
+				console.log(stus.models[0].toJSON());
+			})
+		},
+		model:student,
+		url:'./error.php'//指向一个不存在的文件
+	});
+	var stus=new stulist();
+	stus.create({
+		Code:'10107',
+		Name:'Gxr',
+		Score:752
+	},{
+		// wait:false, //会触发add
+		// wait:true, //不会触发add
+		silent:true,  //静默模式 不会触发add
+		success:function(mode,response,options){
+			console.log(response.changed.code);
+		}
+	})
+
+	</script>
+</body>
+</html>

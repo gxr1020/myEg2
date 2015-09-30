@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="button" id="btn" value="获取天气">
+	<input type="button" id="btn2" value="获取天气2">
+<input type="text" id="cs">
+	<p id="val"></p>
+	<script src="http://apps.bdimg.com/libs/jquery/1.6.4/jquery.min.js"></script>
+	<script>
+	function success(value){
+		var vla=document.getElementById('val');
+		vla.innerHTML=value;
+	}
+	function error(e){
+		var val=document.getElementById('val');
+		val.innerHTML=e;
+	}
+
+	var request;
+	if(window.XMLHttpRequest){
+	request =new XMLHttpRequest();
+
+	}else{
+		request=new ActiveXObject('Microsoft.XMLHTTP');
+	}
+	request.onreadystatechange=function(){
+		if(request.readyState===4){
+			if(request.status===200){
+				return success(request.responseText);
+			}else{
+				return error(request.status);
+			}
+		}else{
+			console.log('执行中....');
+		}
+	}
+	document.getElementById('btn').addEventListener('click',function(){
+		// request.open('GET','http://apistore.baidu.com/microservice/cityinfo?cityname=%e5%8c%97%e4%ba%ac');
+	// request.send();
+	findWeather();
+	})
+	function findWeather() {
+    var cityUrl = 'http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js';
+    $.getScript(cityUrl, function(script, textStatus, jqXHR) {
+        var citytq = remote_ip_info.city ;// 获取城市
+        var url = "http://php.weather.sina.com.cn/iframe/index/w_cl.php?code=js&city=" + citytq + "&day=0&dfc=3";
+        $.ajax({
+            url : url,
+            dataType : "script",
+            scriptCharset : "gbk",
+            success : function(data) {
+                // var _w = window.SWther.w[citytq][0];
+                // var _f= _w.f1+"_0.png";
+                // if(new Date().getHours() > 17){
+                //      _f= _w.f2+"_1.png";                
+                // }
+                // var img = "<img width='16px' height='16px' src='http://i2.sinaimg.cn/dy/main/weather/weatherplugin/wthIco/20_20/" +_f
+                // + "' />";
+                // var tq = citytq + " " + img + " " + _w.s1 + " " + _w.t1 + "℃～" + _w.t2 + "℃  " + _w.d1 + _w.p1 + "级";
+                // $('#weather').html(tq);
+                console.log(data);
+            }
+        });
+    });
+}
+document.getElementById('btn2').addEventListener('click',function(){
+	var cs=	document.getElementById('cs').value;
+	my(cs);
+});
+function my(cs){
+
+var cityUrl='http://apistore.baidu.com/microservice/cityinfo?cityname='+cs;
+	console.log(cityUrl);
+
+$.getScript(cityUrl,function( script ,textStatus,jqXHR){
+	$.ajax({
+		url:cityUrl,
+		dataType:'json',
+		 scriptCharset : "gbk",
+            success : function(data) {
+              console.log(data);
+            }
+	})
+});
+
+}
+
+	</script>
+<!-- <script src="http://a.apix.cn/apixlife/weather/weather?cityname=%E5%8C%97%E4%BA%AC"></script> -->
+
+<button id="go">» Run</button>
+<div class="block"></div>
+</body>
+</html>

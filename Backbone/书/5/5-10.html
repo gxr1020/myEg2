@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<h1>触发集合add事件</h1>
+无论使用post还是put向服务器发送数据，都会将已同步的模型对象添加到本地集合对象中
+因为在调用集合对象的create方法时，如果绑定集合对象的add事件 会自动触发
+	<script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../../node_modules/underscore/underscore-min.js"></script>
+	<script src="../../node_modules/backbone/backbone.js"></script>
+	<script>
+	var student=Backbone.Model.extend({
+		defaults:{
+			Code:'10001',
+			Name:'张三',
+			Score:100
+		},
+		idAttribute:'Code' //设置模型对象的Code 为id
+	});
+	var stulist=Backbone.Collection.extend({
+		
+		initialize:function  () {
+			//初始化监听对象添加事件
+			this.on('add',function(model,reponse,options){
+				console.log(stus.models[0].toJSON());
+			});
+		},
+		model:student,
+		url:'./create.php'
+	});
+	var stus=new stulist();
+	stus.create({
+		Code:'10107',
+		Name:'GXR',
+		Score:750
+	},{
+		success:function(model,reponse){
+			console.log(reponse)
+		}
+	});
+
+	</script>
+</body>
+</html>

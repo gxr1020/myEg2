@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+var notification = new Notification('标题');
+notification.onshow = function () {
+    setTimeout(function () {
+        notification.close();
+    }, 3000);
+}
+	</script>
+</body>
+</html>

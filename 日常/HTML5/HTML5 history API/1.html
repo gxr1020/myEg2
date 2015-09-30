@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<a href="http://caipiao.tempay.com" id="link">xxx</a> <br>
+<img id="img" src="cmd.png" height="335" width="654" alt="">
+<script>
+	var $=function  (id) {
+		return document.getElementById(id);
+	}
+	window.addEventListener('popstate',function(){
+		alert(11111);
+	},false);
+
+	$('link').onclick=function(){
+		var url='https://www.baidu.com/img/baidu_jgylogo3.gif';
+		$('img').src=url;
+		try{
+			history.pushState({
+				name:'zawa'
+			},'',url);
+		}catch(e){
+			alert(e)
+		}
+		return false;
+	}
+
+</script>
+	
+</body>
+</html>

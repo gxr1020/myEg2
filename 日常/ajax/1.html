@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+		<script>
+var fuck = function(text) {
+    text.data.statuses.forEach(function(status) {
+        document.write('<p>'+status.text+'</p>')
+    })
+}
+</script>
+<script src="https://api.weibo.com/2/statuses/user_timeline.json?source=1583605849&uid=1694884707&callback=fuck"></script>   
+</head>
+<body>
+ 
+</body>
+</html>

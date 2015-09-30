@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<div class="" id="demo"></div>
+<input type="button" onclick="aa()">
+	<script>
+	function aa () {
+	window.navigator.geolocation.watchPosition(showPosition,error);
+		
+	}
+	function showPosition(position){
+		var latlon=position.coords.latitude+','+position.coords.longitude;
+		console.log(latlon);
+	}
+	function error(e){
+		console.log(e);
+		console.log('error');
+	}
+	</script>
+</body>
+</html>
