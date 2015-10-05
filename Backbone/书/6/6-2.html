@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	.cls_6{
+		font-size:12px;
+	}
+	</style>
+</head>
+<body>
+视图对象访问模型对象
+	<div class="cls_6" id="show"></div>
+	<script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../../node_modules/underscore/underscore-min.js"></script>
+	<script src="../../node_modules/backbone/backbone-min.js"></script>
+	<script>
+	var student=Backbone.Model.extend({
+		defaults:{
+			Code:'',
+			Name:'',
+			Score:0
+		}
+	});
+	var stus=new student({
+		Code:'10107',
+		Name:'Gxr',
+		Score:750
+	});
+	// console.log(stus.get('Code'));
+	var stusview=Backbone.View.extend({
+		el:'#show',
+		// model:stus,
+		render:function  () {
+			// this.el.innerHTML=stus.get('Code');
+			// this.el.innerHTML=this.model.get('Code')
+			this.el.innerHTML=JSON.stringify(this.model);
+		}
+	});
+	var sutv=new stusview({model:stus});
+	sutv.render();
+	</script>
+</body>
+</html>

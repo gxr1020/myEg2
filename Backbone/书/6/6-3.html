@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>视图对象访问集合对象</title>
+	<style>
+		.cls_6{
+			font-size:12px;
+			background:#333;
+		}
+	</style>
+</head>
+<body>
+<div class="cls_6" id="show"></div>
+	<script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../../node_modules/underscore/underscore-min.js"></script>
+	<script src="../../node_modules/backbone/backbone-min.js"></script>
+<script>
+	var stumodels=[{
+		Code:'10101',
+		Name:'gxr1',
+		Score:530
+	},{
+		Code:'10102',
+		Name:'gxr2',
+		Score:531
+	},{
+		Code:'10103',
+		Name:'gxr3',
+		Score:533
+	},{
+		Code:'10104',
+		Name:'gxr4',
+		Score:534
+	},{
+		Code:'10105',
+		Name:'gxr5',
+		Score:535
+	}];
+
+	var stulist=new Backbone.Collection(stumodels);
+	var stuview=Backbone.View.extend({
+		el:'#show',
+		render:function  () {
+			// console.log(this.collection)
+			var curlist=this.collection.models;
+			for(var i=0;i<curlist.length;i++){
+				this.el.innerHTML+=JSON.stringify(curlist[i])+"<br>";
+			}
+		}
+	});
+	var stuv=new stuview({
+		collection:stulist
+	});
+	stuv.render();
+</script>
+</body>
+</html>

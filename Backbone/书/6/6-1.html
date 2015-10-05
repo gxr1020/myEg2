@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	.cls_6{
+		font-size:12px;
+	}
+</style>
+</head>
+<body>
+	<script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../../node_modules/underscore/underscore-min.js"></script>
+	<script src="../../node_modules/backbone/backbone-min.js"></script>
+	
+
+
+
+	<script>
+		var testview=Backbone.View.extend({
+			tagName:'p',  //设置元素的标签，如果不设置默认为div
+			attributes:{	//为一个对象，设置属性
+				'data-cc':123,
+				title:'属性'
+			},  
+			id:'show', //设置id
+			className:'cls_6',  //设置class
+			render:function  (content) {
+				this.el.innerHTML=content;
+				document.body.appendChild(this.el);
+			}
+		});
+		var test=new testview();
+		test.render('用视图创建的！');
+
+
+	</script>
+
+	<div id="show2" class="cls_6"></div>
+
+	<script>
+	var testview2=Backbone.View.extend({
+		el:'#show2',
+		render:function(content){
+			this.el.innerHTML=content;
+		}
+	});
+	var test2=new testview2();
+	test2.render('用el对象')
+	</script>
+</body>
+</html>

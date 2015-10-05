@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	body{
+		font-size:13px;
+		}
+	div{
+		width:260px;
+		padding:5px;
+	}
+	</style>
+</head>
+<body>
+<div id="score"></div>
+<script type="text/template" id="score-tpl">
+	<%=score>600 ? "优秀" : "及格" %> 
+<%console.log(score) %>
+</script>
+	<script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../../node_modules/underscore/underscore-min.js"></script>
+	<script src="../../node_modules/backbone/backbone-min.js"></script>
+
+	<script>
+		// >600 ? "优秀" : "及格"
+	var stuview=Backbone.View.extend({
+		el:$('#score'),
+		initialize:function  () {
+			this.template=_.template($('#score-tpl').html());
+		},
+		render:function(pscore){
+			// var data={score:pscore}
+			this.$el.html(this.template({score:pscore}));
+		}
+	});
+	var stuv=new stuview();
+	stuv.render(601);
+ // console.log(_.template("Hello, <%= name %>", { name: "Jack" }) )
+	</script>
+</body>
+</html>

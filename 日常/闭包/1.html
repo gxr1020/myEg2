@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+
+	function a () {  //外部闭包域，一个名为a的function对象
+		var p=0;  //私有变量p
+		var innerA=function(){ //内部闭包域， 一个名为innerA的function对象
+			console.log(p); //对外部闭包域的私有变量进行引用。
+			//此时会innerA对象的function scope 会产生一个名为closure对象属性，closure对内包含一个p的引用
+		}
+		innerA(); //0 因为是引用使用外部闭包域的p改变 内部也会变
+		p++;
+		innerA(); //1
+	}
+	// debugger;
+	a();
+
+	</script>
+</body>
+</html>
