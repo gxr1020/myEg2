@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	body{font-size:13px;}
+	div{width:260px;text-align: center;padding:5px;}
+	.changed{border:solid 1px #555;}
+	</style>
+</head>
+<body>
+
+	<script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../../node_modules/underscore/underscore-min.js"></script>
+	<script src="../../node_modules/backbone/backbone-min.js"></script>
+	<script>
+	var stuView=Backbone.View.extend({
+		el:$("body"),
+		initialize:function  () {
+			this.render();
+		},
+		render:function(){
+			this.$el.append('<div id="backbone">Backbone是MVC</div>');
+		},
+		events:{
+			'click div#backbone':'togcls' 
+		},
+		togcls:function(){
+			$('#backbone').toggleClass('changed');
+		}
+	});
+	var stuv=new stuView();
+	</script>
+</body>
+</html>

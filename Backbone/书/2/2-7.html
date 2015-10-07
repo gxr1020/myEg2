@@ -27,9 +27,9 @@
 <body>
 	<script type="text/template" id="tpl">
 		<% var intSumScore=0,intAveScore=0;
-			for(var i=0;i<data.list.length;i++){
+			for(var i=0;i<list.length;i++){
 		%>
-			<% var item=data.list[i]%>
+			<% var item=list[i]%>
 			<li>
 				<span><%=item.StuId%></span>
 				<span><%=item.Name%></span>
@@ -39,7 +39,7 @@
 		<%
 			intSumScore+=parseInt(item.Score);			
 		}
-		intAveScore=intSumScore/data.list.length;
+		intAveScore=intSumScore/list.length;
 		%>
 		<li>
 			<span>平均分:</span>
@@ -60,6 +60,8 @@
 	<script src="../../node_modules/jquery/dist/jquery.min.js"></script>
 	<script src="../../node_modules/underscore/underscore-min.js"></script>
 	<script>
+$(function(){
+
 	var $ele=$('#element'),
 		tpl=$('#tpl').html();
 	var data={
@@ -92,9 +94,11 @@
 			}
 		]
 	}
-var html=_.template(tpl,data);
+var html=_.template(tpl)(data);
 console.log(html);
 $ele.append(html);
+
+});
 	</script>
 </body>
 </html>

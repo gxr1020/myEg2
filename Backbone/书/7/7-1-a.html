@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	body{
+		font-size:12px;
+	}
+	</style>
+</head>
+<body>
+	<input type="button" id="btnforward" value="前进">
+	<a href="7-1-b.html" id="lnkforward">前进</a>
+<script>
+	var $obj_wh=window.history; 
+	var qjBtn=document.getElementById('btnforward');
+	if($obj_wh.length>2){ //如果不是历史记录第一条 则
+		document.getElementById('lnkforward').style.display="none";
+	}else{
+		document.getElementById('btnforward').style.display="none";
+	}
+    qjBtn.addEventListener('click',function(){
+    	console.log('x');
+    	window.history.back();
+    })
+</script>
+</body>
+</html>

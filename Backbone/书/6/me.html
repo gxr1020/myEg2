@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	table{
+		width:100%;
+	}
+	td{
+		border: 1px solid #333;
+		text-align: center;
+		cursor:pointer;
+	}
+	</style>
+</head>
+<body>
+<table id="myTable">
+	
+</table>
+<script type="text/template" id="table-tpl">
+
+<% 
+	for(var i=0;i<models.length;i++){
+		var item=models[i].toJSON();
+%>
+	<tr>
+		<td><%=item.Code%></td>
+		<td><%=item.Name%></td>
+		<td><%=item.Score%></td>
+	</tr>
+<%
+	}
+%>	
+</script>
+	<script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../../node_modules/underscore/underscore-min.js"></script>
+	<script src="../../node_modules/backbone/backbone-min.js"></script>
+<script>
+$(function(){
+	var stuModel=Backbone.Model.extend({
+		defaults:{
+			Code:'',
+			Name:'',
+			Score:0
+		}
+	});
+	var stuCollection=Backbone.Collection.extend({
+		model:stuModel
+	});
+	var stuData=[{
+			Code:'123',
+			Name:'gxr1',
+			Score:123
+		},{
+			Code:'456',
+			Name:'gxr2',
+			Score:456
+		},{
+			Code:'789',
+			Name:'gxr3',
+			Score:789
+		},{
+			Code:'101112',
+			Name:'gxr4',
+			Score:101112
+		},{
+			Code:'131415',
+			Name:'gxr5',
+			Score:131415
+		}];
+	var stuC=new stuCollection(stuData);
+	var stuView=Backbone.View.extend({
+		el:$('#myTable'),
+		initialize:function  () {
+			this.template=_.template($('#table-tpl').html());
+			this.render();
+		},
+		render:function(){
+			this.$el.html(this.template(stuC));
+		},
+		events:{
+			'mouseout td':'yr',
+			'mouseover td':'yc'
+		},
+		yr:function(e){
+			// console.log(a)
+			console.log('x');
+			console.log(this);
+			console.log(this.events);
+			console.log(e);
+
+			// this.el.css('background-color','red');
+			// 
+			$(e.target).css('background-color','#fff');
+		},
+		yc:function(e){
+			$(e.target).css('background-color','red');
+		}
+	});
+
+	var stuV=new stuView();	
+
+})	
+</script>
+</body>
+</html>

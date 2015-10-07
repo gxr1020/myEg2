@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	body{
+		font-size:12px;
+	}
+	ul{
+		list-style-type: none;
+		padding:0;
+		margin:0;
+		width:270px;
+	}
+	ul li{
+		margin:5px 0;
+	}
+	ul .lh{
+		font-weight: bold;
+		border-bottom: solid 1px #555;
+		background-color: #eee;
+		height: 23px;
+		line-height: 23px;
+	}
+	ul .lc{
+		border-bottom: dashed 1px #ccc;
+		height: 23px;
+		line-height: 23px;
+
+	}
+	ul li span{
+		padding-left: 10px;
+		width:80px;
+		float: left;
+	}
+
+	</style>
+</head>
+<body>
+
+	<div id="warp">
+		<ul id="ulshowstus">
+			<li class="lh">
+				<span>编号</span>
+				<span>姓名</span>
+				<span>分数</span>
+			</li>
+		</ul>
+		<br>
+		<ul>
+			<li>编号: <input type="text" id="txtCod"></li>
+			<li>姓名: <input type="text" id="txtName"></li>
+			<li>分数: <input type="text" id="txtScore"></li>
+			<li><input type="button" value="添加" id="btnSubmit"></li>
+		</ul>
+
+	</div>
+<script type="text/template" id="stus-tpl">
+		<li class="lc">
+			<span><%=Code%></span>
+			<span><%=Name%></span>
+			<span><%=Score%></span>
+		</li>	
+</script>
+
+
+	<script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../../node_modules/underscore/underscore-min.js"></script>
+	<script src="../../node_modules/backbone/backbone-min.js"></script>
+<script>
+	var student=Backbone.Model.extend({
+		defaults:{
+			Code:'10001',
+			Name:'张三',
+			Score:100
+		}
+	});
+	var stulist=Backbone.Collection.extend({
+		mdoel:student,
+		initialize:function  (model,options) {
+			this.on('add',options.view.showmodel);
+		}
+	});
+	var stuview=Backbone.View.extend({
+		el:$('#warp'),
+		initialize:function(){
+			var on1=new student({})
+
+			//把view传过去
+			this.stul=new stulist(on1,{view:this}); 
+		},
+		events:{
+			'click #btnSubmit':'addmodel'
+		},
+		addmodel:function(){
+			console.log('x');
+			var stum=new student({
+				Code:$('#txtCod').val(),
+				Name:$('#txtName').val(),
+				Score:$('#txtScore').val()
+			});
+			this.stul.add(stum);
+			console.log(this.stul.models[0].toJSON());
+		},
+		showmodel:function(model){
+			this.template=_.template($('#stus-tpl').html());
+			var html=this.template(model.toJSON());
+			$('#ulshowstus').append(html);
+		}
+	})
+	var stuv=new stuview();
+</script>
+</body>
+</html>

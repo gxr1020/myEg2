@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>HTML5中history对象的方法</title>
+	<style>
+	div{
+		margin:5px 0;
+		font-size:13px;
+	}
+	</style>
+</head>
+<body>
+<h1>A页</h1>
+	<p>
+		pushState:向历史记录添加一条记录，改变当前URL
+	</p>
+	<div>记录总量:<span id="divNum"></span></div>
+	<div>刷新前<span id="divShow"></span></div>
+	<input type="button" id="btn" value="pushState">
+	<input type="button" id="cz" value="重载">
+
+	<script>
+	var obj_a_state={
+		Code:'10107',
+		Name:'Gxr',
+		Score:750
+	};
+	function supports_history_api(){
+		return !!(window.history && history.pushState);
+	}
+	console.log('a')
+	document.getElementById('btn').addEventListener('click',function(){
+		window.history.pushState(obj_a_state,'HTML5中history的API方法','7-2-b.html'); //会改变当前url	
+	});
+	document.getElementById('cz').addEventListener('click',function(){
+		window.location.reload();
+	})
+	document.getElementById('divNum').innerHTML=history.length;
+	document.getElementById('divShow').innerHTML=JSON.stringify(window.history.state);
+
+
+	</script>
+</body>
+</html>

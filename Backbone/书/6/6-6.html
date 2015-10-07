@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	body{
+		font-size:12px;
+	}
+	ul{
+		list-style-type:none;
+		padding:0;
+		margin: 0;
+	}
+	</style>
+</head>
+<body>
+	<h1>自定义模板变量标记</h1>
+	templateSettings工具类函数，功能为设置模板的配置项
+	<ul id="ulshowstus"></ul>
+	<script type="text/template" id="stus-tpl">
+		<li>自定义模板变量标记</li>
+		<li>编号:{{Code}}</li>
+		<li>姓名:{{Name}}</li>
+		<li>分数:{{Score}}</li>	
+</script>
+	<script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../../node_modules/underscore/underscore-min.js"></script>
+	<script src="../../node_modules/backbone/backbone-min.js"></script>
+	<script>
+		_.templateSettings={
+			interpolate:/\{\{(.+?)\}\}/g  //+? 表非贪婪匹配
+		};
+		var student=Backbone.Model.extend({
+			defaults:{
+				Code:'',
+				Name:'',
+				Score:0
+			}
+		})
+		var stus=new student({
+			Code:'10106',
+			Name:'Gxr1',
+			Score:380
+		});
+		var stuView=Backbone.View.extend({
+			el:$("#ulshowstus"),
+			initialize:function(){
+				this.template=_.template($("#stus-tpl").html());
+			},
+			render1:function  () {
+				this.$el.html(this.template(this.model.toJSON()));
+			}
+		});
+		var stuv=new stuView({model:stus});
+		stuv.render1();
+	</script>
+</body>
+</html>

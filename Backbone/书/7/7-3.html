@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>location对象的属性和方法</title>
+</head>
+<body>
+	<div id="divShow"></div>
+	<input type="button" id="btnreload" value="重载" onclick="winodw.location.reload();">
+	<input type="button" id="btnreplace" value="替换" onclick="window.location.replace('http://www.rttop.cn')">
+	<script>
+	var $html="";
+	var $obj_wl=window.location;
+	for(var idx in $obj_wl){
+		$html+="<b>"+idx+":"+"</b>"+$obj_wl[idx]+"</br>";
+	}
+	document.getElementById('divShow').innerHTML=$html;
+	</script>
+</body>
+</html>

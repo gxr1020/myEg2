@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	body{
+	font-size:12px;
+	}
+	</style>
+</head>
+<body>
+<input type="button" value='后退' class="back">
+<a href="7-1-a.html">链接回去</a>
+	<script>
+	
+  var dom=document.querySelector('.back');
+  dom.addEventListener('click',function(){
+  	window.history.forward();
+  })
+	</script>
+</body>
+</html>

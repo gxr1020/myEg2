@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<h1>B页</h1>
+<p>
+		replaceState:修改当前这条历史记录(不会添加到历史记录)，改变当前URL
+	</p>
+
+
+	<div>记录总量:<span id="divNum"></span></div>
+	<div>刷新后:<span id="divShow"></span></div>
+	<input type="button" id="btn" value="replaceState">
+	<input type="button" id="cz" value="重载">
+<script>
+	var obj_b_state={
+		Code:'10107',
+		Name:'gxr2',
+		Score:950
+	}
+	console.log('b');
+	document.getElementById('btn').addEventListener('click',function  () {
+		window.history.replaceState(obj_b_state,'HTML中的historyAPI方法','7-2-a.html');		
+	});
+
+	document.getElementById('cz').addEventListener('click',function(){
+		window.location.reload();
+	})
+
+
+	document.getElementById('divNum').innerHTML=history.length;
+	document.getElementById('divShow').innerHTML=JSON.stringify(window.history.state);
+
+</script>
+</body>
+</html>

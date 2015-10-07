@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div{
+			margin:5px 0;
+			font-size:13px;
+		}
+	</style>
+</head>
+<body>
+<p>event方式绑定URL地址</p>
+
+<div>
+	<a href="#">首页</a> |
+	<a href="#search">查询列表</a> |
+	<a href="#search/abc">关键字查询</a> |
+	<a href="#search/abc/p2">页码关键字查询</a> |
+	<a href="#error">其他页</a> 
+</div>
+<div id="divShow"></div>
+
+
+	<script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../../node_modules/underscore/underscore-min.js"></script>
+	<script src="../../node_modules/backbone/backbone-min.js"></script>
+	<script>
+		var $divShow=$('#divShow');
+		var testrouter=Backbone.Router.extend({
+			routes:{
+				'':'main',
+				'search':'search_list',
+				'search/:key':'search_key',
+				'search/:key/p:page':'search_key_page',
+				'*search':'search_default'
+			}
+		});
+		var router=new testrouter();
+		router.on('route:main',function  () {
+			$divShow.html('首页');
+		});
+		router.on('route:search_list',function(){
+			$divShow.html('查询列表');
+		});
+		router.on('route:search_key',function(key){
+			$divShow.html('查询关键字'+key+'记录');
+		});
+		router.on('route:search_key_page',function(key,page){
+			$divShow.html('查询关键字'+key+'记录，页码为'+page);
+		});
+		router.on('route:search_default',function(){
+			$divShow.html('其他页');
+		});
+		Backbone.history.start();
+	</script>
+</body>
+</html>

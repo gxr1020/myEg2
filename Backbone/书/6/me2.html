@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<style>
+	body{
+		font-size:12px;
+	}
+	ul{
+		list-style-type: none;
+		padding:0;
+		margin:0;
+		width:270px;
+	}
+	ul li{
+		margin:5px 0;
+	}
+	ul .lh{
+		font-weight: bold;
+		border-bottom: solid 1px #555;
+		background-color: #eee;
+		height: 23px;
+		line-height: 23px;
+	}
+	ul .lc{
+		border-bottom: dashed 1px #ccc;
+		height: 23px;
+		line-height: 23px;
+
+	}
+	ul li span{
+		padding-left: 10px;
+		width:80px;
+		float: left;
+	}
+
+	</style>
+</head>
+<body>
+	<div id="warp">
+		<ul id="ulshowstus">
+			<li class="lh">
+				<span>编号</span>
+				<span>姓名</span>
+				<span>分数</span>
+			</li>
+		</ul>
+		<br>
+		<ul>
+			<li>
+				编号:
+				<input type="text" id="txtCode"></li>
+			<li>
+				姓名:
+				<input type="text" id="txtName"></li>
+			<li>
+				分数:
+				<input type="text" id="txtScore"></li>
+			<li>
+				<input type="button" id="btnSubmit" value="提交"></li>
+		</ul>
+
+		<script type="text/template" id="stus-tpl">
+		<li class="lc">
+			<span><%=Code%></span>
+			<span><%=Name%></span>
+			<span><%=Score%></span>
+		</li>	
+	</script>
+	</div>
+	<script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../../node_modules/underscore/underscore-min.js"></script>
+	<script src="../../node_modules/backbone/backbone-min.js"></script>
+
+	<script>
+	var stuM=Backbone.Model.extend({
+		defaults:{
+			Code:"",
+			Name:"",
+			Score:0
+		}
+	})
+
+	var stuC=Backbone.Collection.extend({
+		model:stuM
+	})
+	var data=[{
+		Code:'xxx',
+		Name:'Gxr',
+		Score:123
+	},{
+		Code:'xx2',
+		Name:'Gxr2',
+		Score:456
+	}]
+
+	var stuV=Backbone.View.extend({
+		el:$('#warp'),
+		initialize:function  () {
+
+			this.stuCeg=new stuC(data);
+
+			var tpl=$('#stus-tpl').html()
+			// console.log(tpl);
+			this.template=_.template(tpl);
+			this.render();
+		},
+		render:function(){
+			var i,len=this.stuCeg.models.length;
+			for(i=0;i<len;i++){
+				var htmlTxt=this.template(this.stuCeg.models[i].toJSON());
+				$('#ulshowstus').html($('#ulshowstus').html()+htmlTxt);
+			}			
+		},
+		events:{
+			'click #btnSubmit':'submitBtn'
+		},
+		showmodel:function(model){
+
+		}
+		,
+		submitBtn:function(){
+			var codetxt=$('#txtCode').val(),
+				nametxt=$('#txtName').val(),
+				scoretxt=$('#txtScore').val();
+			var newmodel=new stuM({Code:codetxt,Name:nametxt,Score:scoretxt});
+			this.stuCeg.add(newmodel);
+			var htmlTxt=this.template(newmodel.toJSON());
+			var oldhtmlTxt=$('#ulshowstus').html();
+			$('#ulshowstus').html(oldhtmlTxt+htmlTxt)
+			// this.render();	
+		}
+	});
+	var stuVeg=new stuV();
+	</script></body>
+</html>
