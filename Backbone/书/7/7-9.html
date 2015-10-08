@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<h1>Backbone.history对象 stop方法</h1>
+<h1>Backbone.history对象 start方法:监听hash变化执行相应的action函数</h1>
+<input type="button" value="停止" id="btnStop">
+<div id="divShow"></div>
+	<script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../../node_modules/underscore/underscore-min.js"></script>
+	<script src="../../node_modules/backbone/backbone-min.js"></script>
+	<script>
+var $divShow=$('#divShow');
+var testRouter=Backbone.Router.extend({
+	routes:{
+		'search2/:key':'search2_key',
+		'search3/:key':'search3_key'
+	},
+	search2_key:function  (key) {
+		$divShow.html('查询2关键字:'+key);
+	},
+	search3_key:function(key){
+		$divShow.html('查询3关键字:'+key);
+	}
+});
+var myRouter=new testRouter();
+Backbone.history.start();
+var intnum=0;
+window.setInterval(function(){
+	intnum++;
+	if(!(intnum%2)){
+		myRouter.navigate('search2/abc',{trigger:true});
+	}else{
+		myRouter.navigate('search3/def',{trigger:true});
+	}
+
+},2000);
+$('#btnStop').on('click',function(){
+	var val=$(this).val();
+	if(val==='停止'){
+		Backbone.history.stop();
+		$(this).val('开始');
+	}else if(val==='开始'){
+		Backbone.history.start();
+		$(this).val('停止')
+
+	}
+
+});
+	</script>
+</body>
+</html>

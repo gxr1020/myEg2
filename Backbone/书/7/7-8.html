@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	div{
+		margin:5px 0;
+		font-size:13px;
+		}</style>
+</head>
+<body>
+<h1>Router类的navigate方法(跳转到指定(hash) 然后执行该hash的action函数  )</h1>
+<h2> router实例.navigate(hash片段,option) //option为配置参数</h2>
+<div id="divShow"></div>
+
+
+	<script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../../node_modules/underscore/underscore-min.js"></script>
+	<script src="../../node_modules/backbone/backbone-min.js"></script>
+	<script>
+	var $divShow=$('#divShow');
+	var testrouter=Backbone.Router.extend({
+		routes:{
+			'search2/:key':'search2_key',
+			'search3/:key':'search3_key'
+		},
+		search2_key:function  (key) {
+				$divShow.html('查询2关键字为 '+key+'记录');
+		},
+		search3_key:function(key){
+				$divShow.html('查询3关键字为 '+key+'记录');
+		}
+	});
+	var router=new testrouter();
+	Backbone.history.start();	
+	var intnum=0;
+	window.setInterval(function(){
+		intnum++;
+		console.log(!(intnum%2));
+		if(!(intnum%2)){
+			router.navigate('search2/abc',{trigger:true});
+			
+		}else{
+			router.navigate('search3/def',{trigger:true});
+			
+
+		}
+	},1000);
+	</script>
+</body>
+</html>

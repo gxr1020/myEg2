@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{
+		box-sizing:border-box;
+	}
+	html,body{
+		height: 100%;
+		margin:0;
+		padding:0; 
+	}
+	.sky{
+		height: 100%;
+		background-color: #c9f7fd;
+		overflow: hidden;
+		position: relative;
+	}
+	.circle{
+		background-color: #95d6de;
+		border-radius: 200px;
+		border:5px solid #ecf9fb;
+		width:200px;
+		height: 200px;
+		position: relative;
+		top:50%;
+		left:50%;
+		margin:-100px 0 0 -100px;
+		overflow:hidden;
+		z-index: 10;
+	}
+	.star{
+		position: absolute;
+		border-radius: 20px;
+		-webkit-transition:all 1s ease-in;
+		-moz-transition:all 1s ease-in;
+		transition:all 1s ease-in;
+		margin: -10px 0 0 -10px;
+		background-color: #fff;
+		opacity: 0;
+		top:50%;left:50%;
+	}
+	.size-0{
+		width: 5px;
+		height: 5px;
+	}
+	.size-1{
+		width: 15px;
+		height: 15px;
+	}
+	.size2{
+		width: 25px;
+		height: 25px;
+	}
+	.bright-0{
+		opacity: 0.6;
+	}
+	.bright-1{
+		opacity: 0.8;
+	}
+	.bright-2{
+		opacity: 0.9;
+	}
+	</style>
+</head>
+<body>
+	<div class="sky">
+		<div class="circle"></div>
+	</div>
+	<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+	function random(min,max){
+		return Math.floor(Math.random()*(max-min+1))+min;
+	}
+	function getStar(count){
+		var $star;
+		for(var i=0;i<count;i++){
+			$star=$('<div class="star"></div>');
+			$star.addClass('size-'+random(0,2));
+			$star.addClass('bright-'+random(0,2));
+			$('.sky .circle').append($star);
+		}
+	}
+
+	function randomStar(){
+		$('.star').each(function(){
+
+			$(this).css({ //此时$(this)指向 $(.star)
+				'top':(Math.random(0,1)*100+"%"),
+				'left':(Math.random(0,1)*100+"%")
+			});
+		
+			$(this).attr('class','star');
+			$(this).addClass('size-'+random(0,2));
+			$(this).addClass('bright-'+random(0,2));
+			// $(this).addClass('pos-'+random(0,4));
+
+		});
+	}
+	function loop(ms){
+		setInterval(function(){
+			randomStar();
+			// newLoop(i);
+		},ms)
+	}
+
+getStar(14);
+randomStar();
+loop(1000);
+
+
+</script>
+
+</body>
+</html>

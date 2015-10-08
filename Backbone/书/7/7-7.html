@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	div{
+		margin:5px 0;
+		font-size:13px;
+	}
+	</style>
+</head>
+<body>
+<h1>Router类的route方法（坑）</h1>
+
+
+
+<div>
+	<a href="#">首页</a> |
+	<a href="#search">查询列表</a> |
+	<a href="#search/abc">关键字查询</a> |
+	<a href="#search/abc/p111">页码关键字查询</a> |
+
+	<a href="#search2/abc/p2">页码关键字查询2</a> |
+	<a href="#error">其他页</a>
+</div>
+<div id="divShow"></div>
+
+	<script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../../node_modules/underscore/underscore-min.js"></script>
+	<script src="../../node_modules/backbone/backbone-min.js"></script>
+
+	<script>
+	var $divShow=$('#divShow');
+	var testrouter=Backbone.Router.extend({
+		routes:{
+			'':'main',
+			// '#search':'search',
+			'search/:key':'search_key',
+			'search/:key/p:page':'search_key_page',
+			'*search':'search_default'
+		},
+		initialize:function  () {
+			this.route('search','search_list',function(){
+				$divShow.html('#search');
+			});
+		},
+		main:function(){
+			$divShow.html('首页');			
+		},
+		search_key:function(key){
+			$divShow.html('#search/:key :'+'key值是'+key);
+		},
+		search_key_page:function(key,page){
+			$divShow.html('#search/:key/p:page:'+'key值是'+key+',page值是'+page);
+		},
+		search_default:function(){
+			$divShow.html('#search_default'+'错误页');
+		}
+	});
+	var router3=new testrouter();
+	router3.route('search2/:key/p:page','xxx',function(key,page){
+		$divShow.html('#search2/:key/p:page:=---'+'key:'+key+'page:'+page);
+	})
+
+	Backbone.history.start();
+	</script>
+
+
+</body>
+</html>
