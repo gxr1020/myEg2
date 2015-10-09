@@ -1,4 +1,4 @@
-$(function  () {
+// $(function  () {
 	//学生对象模型
 	var Student=Backbone.Model.extend({
 
@@ -111,4 +111,4 @@ var stuAppView=Backbone.View.extend({
 })
 var sapp=new stuAppView();
 
-})
+// })
