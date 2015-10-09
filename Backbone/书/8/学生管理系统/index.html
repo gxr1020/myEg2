@@ -3,18 +3,75 @@
 <head>
 	<meta charset="UTF-8">
 	<title>学生管理系统</title>
-</head>
+	<link rel="stylesheet" href="student.css"></head>
+
 <body>
 	<div id="stuManager">
 		<ul id="ulMessage">
 			<li class="li_h">
 				<span>学号</span>
+				<span>姓名</span>
+				<span>性别</span>
+				<span>总分</span>
+				<span>操作</span>
 			</li>
 		</ul>
-	</div>
+		<script type="text/template" id="item-template">
+		<li>
+			<span>
+				<div><%=StuID%></div>
+			</span>	
+			<span class="show">
+				<div class="disp"><%=Name%></div>
+				<div class="edit">
+					<input type="text" name="Name" id="Name" class="inputtxt" size="8"/>
+				</div>
+			</span>	
+			<span class="show">
+				<div class="disp"><%=Sex%></div>
+				<div class="edit">
+					<select name="Sex" id="Sex">
+						<option value="男">男</option>
+						<option value="女">女</option>
+					</select>
+				</div>
+			</span>	
+			<span class="show">
+				<div class="disp"><%=Score%></div>
+				<div class="edit">
+					<input type="text" name="Score" id="Score" class="inputtxt" size="8"/>
+				</div>
+			</span>
+			<span><a href="#">删除</a></span>
+		</li>	
+		</script>
 
+		<div class="input">
+			<span class="spanl">
+				学号:
+				<input type="text" readonly="readonly" name="StuID" id="StuID" calss="inputtxt" size="10">
+				<br/>
+				姓名:
+				<input type="text" name="Name" id="Name" class="inputtxt" size="15"/>
+			</span>
+			<span class="spanr">
+				性别:
+				<select name="Sex" id="Sex">
+					<option value="男">男</option>
+					<option value="女">女</option>
+				</select>
+				<br/>
+				总分:
+				<input type="text" name="Score" id="Score" class="inputtxt" szie="8"></span>
+			<p class="btn">
+				<input type="button" id="btnAdd" value="增加" class="inputbtn"/>
+			</p>
+			<p id="pStatus"></p>
+		</div>
+	</div>
 	<script src="../../../node_modules/jquery/dist/jquery.min.js"></script>
 	<script src="../../../node_modules/underscore/underscore-min.js"></script>
 	<script src="../../../node_modules/backbone/backbone-min.js"></script>
+	<script src="application.js"></script>
 </body>
 </html>
