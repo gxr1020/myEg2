@@ -3,8 +3,71 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<link rel="stylesheet" href="css/person.css">
+
 </head>
 <body>
+	<div id="info"></div>
+	<!-- <div class="items"></div> -->
+	<!-- 模板1 -->
+	<script type="text/template" id="tpl-item">
+		<%=(name?name:"<i>姓名为空</i>")%>
+	</script>
+	<!-- End模板1 -->
+
+	<!-- 模板2 -->
+	<script type="text/template" id="tpl-top">
+		<header>
+			<input type="search" autofocus></header>
+			<div class="items"></div>
+		<footer>
+			<button>新建</button>
+		</footer>
+	</script>
+	<!-- End模板2 -->
+
+	<!-- 模板3 -->
+	<script type="text/template" id="tpl-show">
+		<header>
+			<a class="edit">编辑</a>
+		</header>
+		<div class="content">
+			<p>姓名:<%=name%></p>
+			<p>性别:<%=sex%></p>
+			<p>邮箱:<%=email%></p>
+		</div>
+	</script>
+	<!-- End模板3 -->
+
+	<!-- 模板4 -->	
+	<script type="text/template" id="tpl-edit">
+	<header>
+		<a class="save">保存</a>
+		<a class="dele">删除</a>
+	</header>
+	<div class="content">
+		<form>
+			<div>
+				<span>姓名:</span>
+				<input type="text" id="name" name="name" value="<%= name %>"/></div>
+			<div>
+				<span>性别:</span>
+				<input type="text" id="sex" name="sex" value="<%= sex %>"/></div>
+			<div>
+				<span>邮箱:</span>
+				<input type="email" id="email" name="email" value="<%= email %>"/></div>
+		</form>
+	</div>
+	</script>
+	<!-- End模板4 -->
+
+
 	
+	<script src="js/jquery.js"></script>
+	<script src="js/underscore.js"></script>
+	<script src="js/backbone.js"></script>
+	<script src="js/backbone.localStorage.js"></script>
+	<script src="js/application.js"></script>
+
 </body>
 </html>
