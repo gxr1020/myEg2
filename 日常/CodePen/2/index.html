@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	canvas{
+		position:absolute;
+		top:0;
+		left:0;
+	}
+	</style>
+</head>
+<body>
+	<canvas id="c"></canvas>
+	<script>
+	var c=document.getElementById('c');
+	var w=c.width=window.innerWidth,
+		h=c.height=window.innerHeight,
+		ctx=c.getContext('2d'),
+		cx=w/2,   //屏幕宽度的一半
+		cy=h/2,   //屏幕高度的一半
+		particles=[],  //保存粒子数组
+		tick=0;  
+
+		ctx.fillRect(0,0,w,h);
+
+		function Particle () {
+			this.reset();
+		}
+		// 重新设置点坐标
+		Particle.prototype.reset=function(){
+			this.x=Math.random()*w; //Math.random()  0-1 之间 此时 0-w
+			this.y=Math.random()<(cy/h)?-Math.random()*h/2:h+Math.random()*h/2;  //随机数组 粒子在屏幕外 上面或下面 随机的
+		}
+		// this.x:0~w
+		// this.y: 如果小于1/2  则     0~-高度的一半  否则  高度+(0~高度一半)= 高度~ 高度*3/2
+
+
+		// 重新设置每一步
+		Particle.prototype.step=function(){
+			var dx=this.x-cx, // -宽度的一半~ 宽度的一半
+				dy=this.y-cy,  // -高度的一半 ~ -高度  否则 高度一半~高度
+				d=dx*dx+dy*dy; //长度 到原点的距离
+				console.log(dx+" "+ dy);
+				
+			ctx.strokeStyle='hsl(hue,80%,50%)'.replace('hue',dy+tick);  ///透明度  颜色随机随机
+			// console.log(ctx.strokeStyle);
+			ctx.beginPath();
+			ctx.moveTo(this.x,this.y);
+			this.x-=dx/50;
+			this.y-=dy/10;
+			ctx.lineTo(this.x,this.y);
+			ctx.stroke();
+			// console.log(1)
+			if(Math.abs(dy)<2){
+				this.reset();
+			// console.log(2)
+
+			}
+		}
+
+		function anim(){
+			window.requestAnimationFrame(anim);
+			++tick;
+			if(particles.length<200){
+				particles.push(new Particle);
+			}
+			ctx.fillStyle='rgba(0,0,0,.08)';
+			ctx.fillRect(0,0,w,h);
+			particles.map(function(particle){
+				particle.step();
+			});
+			console.log(tick);
+		}
+		anim();
+
+		window.addEventListener('resize',function(){
+			w=c.width=window.innerWidth;
+			h=c.height=window.innerHeight;
+			ctx.fillRect(0,0,w,h);
+		});
+		window.addEventListener('click',function(e){
+			cx=e.clientX;
+			cy=e.clientY;
+		})
+	</script>
+</body>
+</html>

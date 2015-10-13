@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="student.css"></head>
+<body>
+	<div id="stuManager">
+		<ul id="ulMessage" style="width:585px">
+			<li class="li_h">
+				<span>Id 号</span>
+				<span>学号</span>
+				<span>姓名</span>
+				<span>性别</span>
+				<span>总分</span>
+				<span>操作</span>
+			</li>
+		</ul>
+		<div class="input">
+			<span class="spanl">
+			id号:
+			<input type="text" readonly="readonly" name="StuID" id="StuID" calss="inputtxt" size="10"><br/>
+				
+				姓名:
+				<input type="text" name="stuName" id="stuName" class="inputtxt" size="15"/>
+				<br/>
+				总分:
+				<input type="text" name="stuScore" id="stuScore" class="inputtxt" szie="8">
+			</span>
+			<span class="spanr">
+			学号:
+				<input type="text" name="stuClassId" id="stuClassId" size="10">
+				<br/>
+				性别:
+				<select name="stuSex" id="stuSex">
+					<option value="男">男</option>
+					<option value="女">女</option>
+				</select>
+				</span>
+			<p class="btn">
+				<input type="button" id="btnAdd" value="增加" class="inputbtn"/>
+			</p>
+			<p id="pStatus"></p>
+		</div>
+
+
+		<script type="text/template" id="stuTmp">
+		
+			<span>
+				<%=stuId%>
+			</span>
+			<span class="show">
+				<div class="disp"><%=stuClassId%></div>
+				<div class="edit"><input type="text" name="stuClassId" class="inputtxt" size="8"></div>
+			</span>
+			<span class="show">
+				<div class="disp">
+					<%=stuName%>
+				</div>
+				<div class="edit">
+					<input type="text" name="stuName" class="inputtxt"  size="8">
+				</div>
+			</span>
+			<span class="show">
+				<div class="disp">
+					<%=stuSex%>
+				</div>
+				<div class="edit">
+					<select  name="stuSex">
+					<option value="男">男</option>
+					<option value="女">女</option>					
+					</select>
+				</div>
+			</span>
+			<span class="show">
+				<div class="disp">
+					<%=stuScore%>
+				</div>
+				<div class="edit">
+					<input type="text" name="stuScore"  class="inputtxt"  size="8">
+				</div>
+			</span>
+			<span>
+			<a href="#">删除</a>
+			</span>
+
+		
+		</script>
+	</div>
+
+	<script src="../../../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../../../node_modules/underscore/underscore-min.js"></script>
+	<script src="../../../node_modules/backbone/backbone-min.js"></script>
+	<script src="application2.js"></script>
+</body>
+</html>
