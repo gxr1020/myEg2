@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<p><pre>* 贪婪匹配(默认) 
+	如:  reg=/<*>/  
+		 reg.exec( &lt;div&gt;aa&lt;/diva&gt;)        
+	结果:
+	     &lt;div&gt; aaa &lt;div&gt; 整段匹配
+
+	</pre>
+</p>
+<p>
+<pre>
+	*?懒惰匹配
+	如: reg=/<*?>/
+		reg.exec( &lt;div&gt;aa&lt;/diva&gt;)
+	如果:
+		&lt;div&gt;	
+</pre></p>
+<p>
+	<pre>
+		[^ ] //不匹配而不是匹配开头
+		[^a]  //表 不匹配a
+	</pre>
+</p>
+
+<p>
+<pre>
+	(pattern)、(?:pattern)、(?=pattern)、(?!pattern)、(?<=pattern)、(?<!pattern)
+
+
+</pre>
+</p>
+	<script>
+	var Str='Windows2000';
+	var Str2='Windows1.3';
+	//(pattern) 表示分组匹配 （正则外可以用$1 --- 正则里可以 用\1 来获得）
+	var reg=/Windows(2000|NT)/;
+	reg.exec(Str);  //[Windows2000,2000]
+	console.log(reg.exec(Str).toString()); //
+	
+
+	//(?:pattern) //表示匹配分组匹配里的内容 但不保存到 $1 \1 这些标签里	
+	var reg1=/Windows(?:2000|NT)/;
+	reg1.exec(Str);  //[Windows2000]
+	console.log(reg1.exec(Str).toString())
+	// (?:X)在正则中表示所匹配的子组X不作为结果输出
+	// 正常情况(X)中的X会被作为新增的一个组序号输出，比如(A)(B)，A的序号1,B的序号2
+	// 如果(?:A)(B)，A将没有序号不输出,B的序号为1
+	
+
+	//正向肯定预查
+	// (?=pattern)  //表示匹配分组匹配里的内容 但不会作为结果返回
+	var reg2=/Windows(?=2000|NT)/;
+	reg2.exec(Str); //[Windows]
+	reg2.exec(Str2); //null
+	console.log(reg2.exec(Str).toString()) 
+	console.log(reg2.exec(Str2))
+
+	//正向否定预查
+	//(?!pattern) //表示匹配 分组匹配里的内容不存在 才会成功  但不会作为结果返回
+	var reg3=/Windows(?!2000|NT)/;
+	reg3.exec(Str);//null
+	reg3.exec(Str2); //[Windows]
+	console.log(reg3.exec(Str));
+	console.log(reg3.exec(Str2).toString());
+
+
+	//js不支持！！ (?<=pattern) 和(?<!pattern)
+	//下面的执行都会报错
+	//反向肯定预查
+	//(?<=pattern)
+	var Str3='2000Windows';
+	var Str4='3.1Windows';
+
+	var reg4=/(?<=2000|NT)Windows/;
+	reg4.exec(Str3);//[Windows]
+	reg4.exec(Str4);// null
+	console.log(reg4.exec(Str3).toString()) 
+	console.log(reg4.exec(Str4))
+
+	var reg5=/(?<!2000|NT)Windows/;
+	reg5.exec(Str3); //null
+	reg5.exec(Str4); //[Windows]
+	console.log(reg4.exec(Str3)) 
+	console.log(reg4.exec(Str4).toString())
+	</script>
+</body>
+</html>

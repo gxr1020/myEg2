@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script src="jquery.js"></script>
+	<script>
+		var jq=$('<div></div>');
+		var newjq=new jQuery;
+		console.log(jq.name)
+		console.log(newjq.name)
+
+
+
+		// function objFn () {
+		// 	this.name='txt'
+		// }
+		// obj=new objFn();
+		// console.dir(obj);
+	jQuery.fn.extend({
+	mina: function(a, b) { return a < b ? a : b; },
+	max: function(a, b) { return a > b ? a : b; }
+	});
+	// console.log(jQuery.mina(2,3)); //  2 
+	console.log($('<div>').mina(2,3))
+
+	</script>
+</body>
+</html>

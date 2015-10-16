@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<script>
+	function b(){
+		console.log(this);  //c//window  //d//b
+		
+		return new a()  //c 直接返回new a 的一个对象
+		                  //d  ls={}; ls.__proto__= a.prototype; a.call(ls);return ls;
+	}
+	function a(){
+		console.log(this);
+		this.name='gxr';
+		console.log(1);
+	}
+	var c=b();  //相当于 c=new a()
+	var d=new b();  //  ls={}; ls.__proto__= b.prototype; b.call(ls);return ls;
+	</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	(function(window,undefined){
+
+		var jQuery=(function(){
+			//构建jQuery对象
+			var jQuery=function(selector,context){
+				return new jQuery.fn.init(selector,context,rootjQuery);
+			}
+			//jQuery 对象原型
+			jQuery.fn=jQuery.prototype={
+				constructor:jQuery,
+				init:function(selector,context,rootjQuery){
+
+				}
+			};
+			jQuery.fn.init.prototype=jQuery.fn;
+			jQuery.extend=jQuery.fn.extend=function(){};
+
+			jQuery.extend({
+				
+			});
+			//
+			//
+			return jQuery;
+
+		})();
+		// console.log(window)
+		window.jQuery=jQuery;
+	})(window)
+
+	</script>
+</body>
+</html>

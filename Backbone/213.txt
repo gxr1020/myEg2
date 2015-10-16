@@ -1,1 +1,508 @@
-asdfa
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#add_course">添加课程</button>
+
+    <div class="modal fade type_show" id="add_course" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog w_690" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i class="iconfont" aria-hidden="true">&#xe62b;</i>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <i class="iconfont poa_right">&#xe626;</i>
+                    <form>
+                        <div class="form-group">
+                            <div class="c_title">添加课程</div>
+                            <div class="input-group">
+                                <input type="text" class="form-control search_input" placeholder="请输入名称、所在部门进行模糊搜索" />
+                                <span class="input-group-btn">
+                                    <button class="btn btn_search" type="button">搜索</button>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="row pt_10" id="addCourseFrom">
+                            <div class="form-group col-sm-6">
+
+                                <ul class="list_left_menu row">
+
+                                    <li role="presentation" class="col-md-offset-1 col-xs-5 active">
+                                        <a class="center-block sp1" type="button" href="#nwe2" aria-controls="nwe" role="tab" data-toggle="tab" aria-expanded="false">
+                                            课程分类
+                                            <span></span>
+                                        </a>
+                                    </li>
+                                    <li role="presentation" class="col-xs-5 ">
+                                        <a class="center-block sp2" type="button" href="#cat2" aria-controls="after" role="tab" data-toggle="tab" aria-expanded="true">岗位分类</a>
+                                    </li>
+
+                                </ul>
+
+                                <div class="tbox tab-content">
+                                    <div class="tab-pane fade  active in" id="nwe2">
+                                        <ol>
+                                            <li>
+                                                <a href="#" class="on">·  全部课程</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">·  人力资源</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">·  财务管理</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">·  电子商务</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">·  总裁课堂</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">·  职业素质</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">·  市场营销</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">·  客户服务</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">·  采购物流</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">·  综合管理</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">·  生产管理</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">·  生产管理</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">·  综合管理</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">·  人力资源</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">·  综合管理</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">·  人力资源</a>
+                                            </li>
+                                        </ol>
+                                    </div>
+                                    <div class="tab-pane fade" id="cat2">
+                                        <div class="leftBox">
+                                            <ul>
+                                                <li class="active">
+                                                    <a class="center-block sp1" type="button" href="#div-1" aria-controls="nwe" role="tab" data-toggle="tab" aria-expanded="false">·  人力资源</a>
+                                                </li>
+                                                <li>
+                                                    <a class="center-block sp1" type="button" href="#div-2" aria-controls="nwe" role="tab" data-toggle="tab" aria-expanded="false">·  人力资源</a>
+
+                                                </li>
+                                                <li>
+                                                    <a class="center-block sp1" type="button" href="#div-3" aria-controls="nwe" role="tab" data-toggle="tab" aria-expanded="false">·  人力资源</a>
+                                                </li>
+                                                <li>
+                                                    <a class="center-block sp1" type="button" href="#div-4" aria-controls="nwe" role="tab" data-toggle="tab" aria-expanded="false">·  人力资源</a>
+                                                </li>
+                                                <li>
+                                                    <a class="center-block sp1" type="button" href="#div-5" aria-controls="nwe" role="tab" data-toggle="tab" aria-expanded="false">·  人力资源</a>
+                                                </li>
+                                                <li>
+                                                    <a class="center-block sp1" type="button" href="#div-6" aria-controls="nwe" role="tab" data-toggle="tab" aria-expanded="false">·  人力资源</a>
+                                                </li>
+                                                <li>
+                                                    <a class="center-block sp1" type="button" href="#div-7" aria-controls="nwe" role="tab" data-toggle="tab" aria-expanded="false">·  人力资源</a>
+                                                </li>
+                                                <li>
+                                                    <a class="center-block sp1" type="button" href="#div-8" aria-controls="nwe" role="tab" data-toggle="tab" aria-expanded="false">·  人力资源</a>
+                                                </li>
+
+                                            </ul>
+
+                                        </div>
+                                        <div class="rightBox">
+
+                                            <!-- 第一个选项卡 -->
+                                            <div class="tab-pane fade active in" id="div-1">
+                                                <ul>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <!-- end第一个选项卡 -->
+
+                                            <div class="tab-pane fade  " id="div-2">
+                                                <ul>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理2</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理2</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理2</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理2</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理2</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理2</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理2</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理2</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="tab-pane fade  " id="div-3">
+                                                <ul>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="tab-pane fade  " id="div-4">
+                                                <ul>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理3</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="tab-pane fade  " id="div-5">
+                                                <ul>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理4</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="tab-pane fade  " id="div-6">
+                                                <ul>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="tab-pane fade  " id="div-7">
+                                                <ul>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <!-- 第八个选项卡 -->
+                                            <div class="tab-pane fade  " id="div-8">
+                                                <ul>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">·  人力资源经理</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <!-- end第八个选项卡 --> </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="form-group col-sm-6">
+                                <label for="message-text" class="control-label">
+                                    课程选择
+                                    <a href="#">清空选择</a>
+                                    <a href="#">全选</a>
+
+                                </label>
+                                <div class="select_box select_box_2">
+                                    <div class="soll_box_1">
+                                        <table class="table ">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <span class="on">
+                                                            <i class="iconfont"></i>
+                                                        </span>
+                                                        <p>服装搭配攻略：找对自己的款式服装搭配攻略：找对自己的款式服装搭配攻略：找对自己的款式服装搭配攻略：找对自己的款式</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span class="off">
+                                                            <i class="iconfont"></i>
+                                                        </span>
+                                                        <p>服装搭配攻略：找对自己的款式服装搭配攻略：找对自己的款式服装搭配攻略：找对自己的款式服装搭配攻略：找对自己的款式</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span class="off">
+                                                            <i class="iconfont"></i>
+                                                        </span>
+                                                        <p>服装搭配攻略：找对自己的款式服装搭配攻略：找对自己的款式服装搭配攻略：找对自己的款式服装搭配攻略：找对自己的款式</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span class="on">
+                                                            <i class="iconfont"></i>
+                                                        </span>
+                                                        <p>服装搭配攻略：找对自己的款式服装搭配攻略：找对自己的款式服装搭配攻略：找对自己的款式服装搭配攻略：找对自己的款式</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span class="on">
+                                                            <i class="iconfont"></i>
+                                                        </span>
+                                                        <p>服装搭配攻略：找对自己的款式服装搭配攻略：找对自己的款式服装搭配攻略：找对自己的款式服装搭配攻略：找对自己的款式</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span class="on">
+                                                            <i class="iconfont"></i>
+                                                        </span>
+                                                        <p>服装搭配攻略：找对自己的款式服装搭配攻略：找对自己的款式服装搭配攻略：找对自己的款式服装搭配攻略：找对自己的款式</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span class="on">
+                                                            <i class="iconfont"></i>
+                                                        </span>
+                                                        <p>服装搭配攻略：找对自己的款式服装搭配攻略：找对自己的款式服装搭配攻略：找对自己的款式服装搭配攻略：找对自己的款式</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span class="on">
+                                                            <i class="iconfont"></i>
+                                                        </span>
+                                                        <p>服装搭配攻略：找对自己的款式服装搭配攻略：找对自己的款式服装搭配攻略：找对自己的款式服装搭配攻略：找对自己的款式</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span class="on">
+                                                            <i class="iconfont"></i>
+                                                        </span>
+                                                        <p>服装搭配攻略：找对自己的款式服装搭配攻略：找对自己的款式服装搭配攻略：找对自己的款式服装搭配攻略：找对自己的款式</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span class="on">
+                                                            <i class="iconfont"></i>
+                                                        </span>
+                                                        <p>服装搭配攻略：找对自己的款式服装搭配攻略：找对自己的款式服装搭配攻略：找对自己的款式服装搭配攻略：找对自己的款式</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span class="on">
+                                                            <i class="iconfont"></i>
+                                                        </span>
+                                                        <p>服装搭配攻略：找对自己的款式服装搭配攻略：找对自己的款式服装搭配攻略：找对自己的款式服装搭配攻略：找对自己的款式</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span class="on">
+                                                            <i class="iconfont"></i>
+                                                        </span>
+                                                        <p>服装搭配攻略：找对自己的款式服装搭配攻略：找对自己的款式服装搭配攻略：找对自己的款式服装搭配攻略：找对自己的款式</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span class="on">
+                                                            <i class="iconfont"></i>
+                                                        </span>
+                                                        <p>服装搭配攻略：找对自己的款式服装搭配攻略：找对自己的款式服装搭配攻略：找对自己的款式服装搭配攻略：找对自己的款式</p>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn save_btn">保存设置</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================================================================== -->

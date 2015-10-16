@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	var a=function parson (name,age,sex) {
+		this.name=name;
+		this.age=age;
+		this.sex=sex;
+	}
+	var b;
+	b=a.prototype={
+		yx:function(){
+			conosle.log('yx');
+		}
+	}
+
+	function thisfn(){
+		console.log(this);
+	}
+	
+	function aa(){
+		this.name='a'
+	}
+	function bb(){
+		this.name='b'
+	}
+	var a=new aa()
+	var b=new bb()
+	a.fn=thisfn;
+	b.fn=thisfn;
+	a.fn();
+	b.fn();
+
+
+	</script>
+</body>
+</html>

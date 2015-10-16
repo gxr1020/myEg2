@@ -12,7 +12,8 @@
 					return true;
 				}
 				key=key.toLowerCase();
-				return this.get('name').toLowerCase().indexOf(key) != -1 || this.get('email').toLowerCase().indexOf(key) != -1;
+				return this.get('name').toLowerCase().indexOf(key) != -1 || this.get('email').toLowerCase().indexOf(key) != -1 ;
+				// || this.get('sex').toLowerCase().indexOf(key) != -1  根据这些查
 			}
 
 		});
@@ -115,7 +116,7 @@
 
 				//此时的this.model 是集合
 				this.model.bind('reset',this.renderAll,this);  // 此时绑定到模型集合上的events上
-				this.model.bind('add',this.add,this); // 此时绑定到模型集合上的events上
+				this.model.bind('add',this.add,this); // 此时绑定到模型集合上的events上  集合add 会触发view上的add
 				this.model.bind('remove',this.remove,this);// 此时绑定到模型集合上的events上 
 			},
 
@@ -132,7 +133,6 @@
 				// </footer>
 			
 				this.renderAll();
-
 
 				// console.log(this.$el.html());
 				// 渲染后的视图
@@ -165,13 +165,13 @@
 					model:contact
 				});
 				
-				this.$('.items').append(view.render().el);
+				this.$('.items').append(view.render().el); //添加到html模板上
 			},
 
 			create:function(){
 				// console.log('x');
-				var contact=new Person();
-				this.model.add(contact);
+				var contact=new Person(); //创建一个模型 
+				this.model.add(contact);  //添加到collection 此时this.model是collection
 				appRouter.navigate('person/'+contact.cid+'/edit',{
 					trigger:true
 				});
@@ -180,12 +180,42 @@
 			search:function(){
 				var key=$('input',this.el).val();
 				this.model.each(
+					/**
+					 * [description]
+					 * @param  {model} contact 
+					 * @param  {} element 索引号
+					 * @param  {整个model数组} index   
+					 * @param  {} list    [description]
+					 */
 					function(contact,element,index,list){
+						// console.log('==========================')
+						// console.log('contact')
+						// console.log(contact)
+						// console.log('element')
+						// console.log(element)
+						// console.log('index')
+						// console.log(index)
+						// console.log('list')
+						// console.log(list)
+						// console.log('==========================')
+
+						// contact//为当前模型
+						// contact.view 为当前模型的视图
+						
 						contact.view.$el.toggle(contact.search(key));
+						 // toggle(false)会隐藏
 					}
 				);
 			},
+			/**
+			 * [sele description]
+			 * @param  {model} item [description]
+			 * @return {[type]}      [description]
+			 */		
 			sele:function(item){
+
+				// console.log(this);///此时this是view
+				// this.seleItem //当前视图下selectItem是上一次选择的item模型
 				if(this.seleItem){
 					this.seleItem.view.desele();
 				}
@@ -204,7 +234,7 @@
 		});
 		// 构建用于显示个人资料详细页的视图类
 		var ShowView=Backbone.View.extend({
-			className:'show', //<div class="show"></div>
+			className:'show',   //<div class="show"></div>
 			template:_.template($('#tpl-show').html()),
 			events:{
 				'click .edit':'edit'

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/person.css">
+</head>
+<body>
+	<div id="info">
+		<div class="person">
+			
+		</div>
+	</div>
+	<script type="text/template" id="tpl-item">
+		<%=(name?name:'<i>姓名为空</i>')%>
+	</script>
+
+	<script type="text/template" id="tpl-top">
+		<header>
+			<input type="search" autofocus/>
+		</header>
+		<div class='items'></div>
+		<footer>
+			<button>新建</button>
+		</footer>
+	</script>
+
+	
+	<script id="tpl-show" type="text/template">
+		<header>
+			<a class="edit">编辑</a>
+		</header>
+		<div class="content">
+			<p>姓名:<%=name%></p>
+			<p>性别:<%=sex%></p>
+			<p>个人说明:<%=personal%></p>
+			<p>分数:<%=score%></p>
+		</div>
+	</script>
+
+	<script id="tpl-edit" type="text/template">
+	<header>
+		<a class="save">保存</a>
+		<a class="dele">删除</a>
+	</header>
+	<div class="content">
+		<form>
+			<div>
+				<span>姓名:</span>
+				<input type="text" id="name" name="name" value="<%=name%>"/>
+			</div>
+			<div>
+				<span>性别:</span>
+				<select name="sex" id="sex">
+					<option  value="男">男</option >
+					<option  value="女">女</option>
+				</select>
+			</div>
+			<div>
+				<span>个人说明:</span>
+				<textarea name="personal" id="personal" cols="30" rows="10" ><%=personal%></textarea>
+			</div>
+			<div>
+				<span>分数:</span>
+				<input type="text" id="score" name="score" value="<%=score%>"/>
+			</div>
+			<div>
+			提示:
+			</div>
+		</form>
+	</div>
+	</script>
+
+	<script src="js/jquery.js"></script>
+	<script src="js/underscore.js"></script>
+	<script src="js/backbone.js"></script>
+	<script src="js/backbone.localStorage.js"></script>
+	<script src="js/application2.js"></script>
+</body>
+</html>

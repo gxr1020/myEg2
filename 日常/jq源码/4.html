@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	function b(){
+		this.abc='gxr2'
+	   return new a(); //
+	   	   
+	   // return {name:'gxxx'}
+	}
+	function a(){
+		this.name='gxxx';
+	}
+	var obj=new b();
+
+
+
+var myobj=new myfn()
+function myfn(){
+   this.name='xxx';
+   return 'xxx' //如果构造函数返回 值类型 则忽略
+}
+console.log(myobj)
+
+var obj2=new a2();
+var obj3=a2();
+function a2(){
+    this.name='xxx';
+     return {name:'x2x2x2'}; //返回的是引用类型  ，则返回 与有没有new 结果一样
+}
+console.log(obj2)//  Object {name:'x2x2x2'}
+console.log(obj3);
+	</script>
+</body>
+</html>

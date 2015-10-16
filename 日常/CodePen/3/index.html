@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	body{
+		background-color: #111;
+		overflow: hidden;
+	}
+	canvas{
+		bottom: 0;
+		left:0;
+		margin: auto;
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+	</style>
+</head>
+<body>
+	<script>
+	var M=Math,
+		PI=M.PI,
+		TWOPI=PI*2, //two pi 两个π
+		HALFPI=PI/2,  //half pi π的一半
+		canvas=document.createElement('canvas'),
+		ctx=canvas.getContext('2d'),
+		w=canvas.width=350,
+		h=canvas.height=350,
+		cx=w/2,  //(cx,cy)中心点坐标
+		cy=h/2,
+		count=40,
+		sizeBase=0.1,
+		sizeDiv=5,
+		tick=0;
+	ctx.translate(cx,cy);	 //设置画布原心
+
+	(function loop(){
+		// requestAnimationFrame(loop);
+		ctx.clearRect(-w/2,-h/2,w,h); //填充画布
+		ctx.fillStyle='#fff';
+		var angle=tick/8,
+			radius=-50+M.sin(tick/15)*100, //半径
+			size;
+
+			for(var i=0;i<count;i++){
+				angle+=PI/64;
+				radius+=i/30;
+				size=sizeBase+i/sizeDiv;
+				// size=10
+
+				ctx.beginPath();
+				ctx.arc(M.cos(angle)*radius,M.sin(angle)*radius,size,0,TWOPI,false);
+				ctx.fillStyle='hsl(200,70%,50%)';
+				ctx.fill();
+
+				ctx.beginPath();
+				ctx.arc(M.cos(angle)*(-radius),M.sin(angle)*(-radius),size,0,TWOPI,false);
+				ctx.fillStyle='hsl(320,70%,50%)';
+				ctx.fill();
+
+				ctx.beginPath();
+				ctx.arc(M.cos(angle+HALFPI)*radius,M.sin(angle+HALFPI)*radius,size,0,TWOPI,false);
+				ctx.fillStyle='hsl(60,70%,50%)';
+				ctx.fill();
+
+				ctx.beginPath();
+				ctx.arc(M.cos(angle+HALFPI)*(-radius),M.sin(angle+HALFPI)*(-radius),size,0,TWOPI,false);
+				ctx.fillStyle='hsl(0,0%,100%)';
+				ctx.fill();
+			}
+
+		tick++;
+	})();
+
+	document.body.appendChild(canvas);//把画布插入dom
+
+	</script>
+</body>
+</html>
