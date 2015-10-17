@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	setInterval(function(){
+		for(var i=0;i<100000;i++){
+			var obj={},obj2={};
+			obj.val=obj2;
+			obj2.val=obj;
+		}
+	},10)
+	</script>
+</body>
+</html>

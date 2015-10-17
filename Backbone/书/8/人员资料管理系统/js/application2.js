@@ -17,7 +17,7 @@ var Person = Backbone.Model.extend({
 //集合
 var Persons=Backbone.Collection.extend({
 	model:Person,
-	localStorage:new Store('person-data') ///创建本地存储
+	localStorage:new Store('person-data2') ///创建本地存储
 });
 
 var dataList=[{
@@ -101,8 +101,8 @@ var TopView=Backbone.View.extend({
 	render:function(){
 		$(this.el).html(this.template());
 		this.renderAll();
-		$('.person').append(this.el);
-
+		// $('.person').append(this.el);
+		return this;
 	},
 
 	renderAll:function(){
@@ -244,31 +244,52 @@ var MainView=Backbone.View.extend({
 	initialize:function(){
 		this.editView=new EditView();
 		this.showView=new ShowView();
-		this.render();
+		// this.render();
 	},
 	render:function(){
-
 		this.$el.append(this.showView.render().el);				
 		this.$el.append(this.editView.render().el);
-		$('.person').append(this.el);	
-		
-
+		return this;
 	},
 	edit:function(item){
-
 		this.showView.$el.removeClass('sele');
 		this.editView.$el.addClass('sele');
 		this.editView.change(item);
-
 	},
 	show:function(item){
 		this.editView.$el.removeClass('sele');
 		this.showView.$el.addClass('sele');
 		this.showView.change(item);
 	}
-
-
 })
+
+
+var AppView=Backbone.View.extend({
+	className:'person',
+	initialize:function(){
+		this.top=new TopView({
+			model:this.model
+		});
+		this.main=new MainView();
+		// this.model.fetch();//fetch请求服务器处理(save)
+		this.render();
+	},
+	render:function(){
+		this.$el.append(this.top.render().el);
+		this.$el.append(this.main.render().el);
+		$('#info').append(this.el);
+		return this;
+	},
+	show:function(item){
+		this.top.sele(item);
+		this.main.show(item);
+	},
+	edit:function(item){
+		this.top.sele(item);
+		this.main.edit(item);
+	}
+});
+
 
 // 路由
 var AppRouter=Backbone.Router.extend({
@@ -279,32 +300,25 @@ var AppRouter=Backbone.Router.extend({
 	},
 	show:function(id){
 		console.log(id)
-		if(id!=undefined){
-			// $('.show').remove();
-			var model2=personColl.get(id);
-			// console.log(topV)
-			topV.sele(model2);
-
-			mainV.show(model2);
-			// var showV=new ShowView({model:model2});
-
-		}else{
-			// $('.show').remove();
-
-			topV.sele(personColl.first());
-			mainV.show(personColl.first());
+		if(id!=undefined){			
+			appV.show(this.getPerson(id));
+		}else{			
+			appV.show(personColl.first());
 		}
 	},
-	edit:function(id){
-		var model2=personColl.get(id);
-		mainV.edit(model2)
+	edit:function(id){		
+		appV.edit(this.getPerson(id));
+	},
+	getPerson:function(id){
+		return personColl.get(id);
 	}
 })
 
 var personColl=new Persons(dataList);
-var topV=new TopView({'model':personColl});
+// var topV=new TopView({'model':personColl});
+var appV=new AppView({model:personColl});
 
-var mainV=new MainView();
+// var mainV=new MainView();
 
 
 var appRouter=new AppRouter();

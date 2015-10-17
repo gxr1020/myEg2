@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Require</title>
+</head>
+<body>
+defer和async 功能相同,由于IE不支持async,所以需要添加defer(实现浏览器兼容)
+	<div id="tip"></div>
+ 
+	<script src="./lib/require.js" defer async="true" data-main="Js1/main">
+	</script> 
+	<!--<script src="../../node_modules/requirejs/require.js" defer async="true" data-main="Js1/main">
+	</script>-->
+</body>
+</html>
