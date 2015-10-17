@@ -1,0 +1,11 @@
+body{
+	font-size: 12px;
+}
+#tip{
+	width: 260px;
+	padding: 8px;
+	border: 1px solid #555;
+	background-color: #eee;
+	margin: 10px 0;
+	/*display: none;*/
+}

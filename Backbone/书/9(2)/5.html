@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="Css/Require.css">
+</head>
+<body>
+	<div id="tip"></div>
+	<script src="lib/require.js"></script>
+	<script>
+	require.config({
+		baseUrl:'./lib', //设置模块基础路径
+		paths:{
+			"myjQuery":'jquery'
+		}
+	});
+	require(['myjQuery'],function () {
+		$('#tip').show().html('欢迎来到require')
+	})
+	</script>
+</body>
+</html>
